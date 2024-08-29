@@ -1,7 +1,7 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import { products } from '../model/index.js'
-import { verifyAToken } from '../middleware/userAuth.js'
+import { authenticateToken } from '../middleware/userAuth.js'
 
 
 
@@ -9,7 +9,7 @@ const itemRouter = express.Router()
 itemRouter.use(bodyParser.json())
 
 // Retrieve all Items
-itemRouter.get('/', verifyAToken , (req, res) => {
+itemRouter.get('/', authenticateToken , (req, res) => {
 products.fetchProducts(req, res)
 })
 
@@ -19,22 +19,22 @@ itemRouter.get('/recent', (req, res) => {
 })
 
 //Rerieve a Single Item
-itemRouter.get('/:id', verifyAToken, (req, res) => {  
+itemRouter.get('/:id', authenticateToken, (req, res) => {  
     products.fetchProduct(req, res)
 })
 
 // Add a single Item
-itemRouter.post('/add', verifyAToken,  (req, res) => {  
+itemRouter.post('/add', authenticateToken,  (req, res) => {  
     products.addProduct(req, res)
 })
 
 //Update an item
-itemRouter.patch('/:id', verifyAToken,  (req, res) => { 
+itemRouter.patch('/:id', authenticateToken,  (req, res) => { 
     products.updateProduct(req, res)
 })
 
 //Delete an item
-itemRouter.delete('/:id', verifyAToken, (req, res) => { 
+itemRouter.delete('/:id', authenticateToken, (req, res) => { 
     products.deleteProduct(req, res)
 })
 
