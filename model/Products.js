@@ -49,7 +49,7 @@ class Products {
             const strQry = `
 SELECT prodID, SKU, prodURL, prodName, prodDescription, Price, Quantity ,Category, SuppID 
        FROM Products
-       WHERE productID = ${req.params.id};`
+       WHERE prodID = ${req.params.id};`
             db.query(strQry, (err, result) => {
                 if (err) throw new Error('Unable to retrieve product')
                 res.json({
