@@ -46,7 +46,9 @@ body {
     border: 1px solid rgb(0, 0, 0);
 }
 
-h3 {
+h3 { 
+    color:  steelblue;
+
     text-align: center;
     margin-top: 20px;
 }
@@ -58,7 +60,7 @@ table {
 }
 
 thead {
-    background-color: black;
+    background-color: #7393B3;
    ;
    
 }
@@ -92,6 +94,7 @@ tbody tr:nth-child(even) {
         padding-left: 50%;
         position: relative;
         border: 1px solid #ddd;
+       
     }
 
     td::before {
@@ -107,12 +110,17 @@ tbody tr:nth-child(even) {
 }
 th{
     font-family: "Michroma";
-    color: grey;
+    color: #F9C47D ;
      
 }
 td{
-  color: black;
+   
+    color: slategrey;
 }
-img [alt='logo'] {
-    size: 30px;
+
+img{
+    border-radius: 5px;
+    height: 300px;
+    width: 330px;
+    margin: 30px;
 }
