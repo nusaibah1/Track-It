@@ -5,3 +5,19 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+/* Google Fonts */
+/* ===Michroma==== */
+@import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
+
+/* ===Lato==== */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Michroma&display=swap');
+
+/* ===Montserrat=== */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Michroma&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+h1{
+    text-align: center;
+    font-family: "Michroma";
+    color: grey;
+}
