@@ -10,6 +10,146 @@
     <title>Track It</title>
 </head>
 <body>
-    <h1>Track It</h1>
+   
+     <img src="https://nusaibah1.github.io/inventoryImages/images/TRACK IT.png" class="img-fluid" alt="logo">
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>HTTP Method</th>
+                    <th>Path</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    
+                    <td>GET</td>
+                    <td>/</td>
+                    <td>Displays the static home page.</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>Users</h3>
+        <table>
+            <thead>
+                <tr>
+                 
+                    <th>HTTP Methods</th>
+                    <th>Path</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>GET</td>
+                    <td>/users</td>
+                    <td>Retrieves all users from the database</td>
+                </tr>
+                <tr>
+                    <td>GET</td>
+                    <td>/users/:id</td>
+                    <td>Retrieves a single user from the database</td>
+                </tr>
+                <tr>
+                    <td>POST</td>
+                    <td>/users/register</td>
+                    <td>Adds a single user to the database</td>
+                </tr>
+                <tr>
+                    <td>PATCH/PUT</td>
+                    <td>/users/update/:id</td>
+                    <td>Updates a single user</td>
+                </tr>
+                <tr>
+                    <td>DELETE</td>
+                    <td>/users/delete/:id</td>
+                    <td>Deletes a single user from the database</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Items</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>HTTP Method</th>
+                    <th>Path</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>GET</td>
+                    <td>/items</td>
+                    <td>Retrieves all items within the database</td>
+                </tr>
+                <tr>
+                    <td>GET</td>
+                    <td>/items/:id</td>
+                    <td>Retrieves a single item from the database</td>
+                </tr>
+                <tr>
+                    <td>POST</td>
+                    <td>/products/add</td>
+                    <td>Adds a single product to the database</td>
+                </tr>
+                <tr>
+                    <td>PUT/PATCH</td>
+                    <td>/items/update/:id</td>
+                    <td>Updates a single product record</td>
+                </tr>
+                <tr>
+                    <td>DELETE</td>
+                    <td>/items/delete/:id</td>
+                    <td>Deletes a single product from the database</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Orders</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>HTTP Method</th>
+                    <th>Path</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>GET</td>
+                    <td>user/:userID/orders'</td>
+                    <td>Retrieves all orders</td>
+                </tr>
+                <tr>
+                    <td>GET</td>
+                    <td>user/:userID/order/:orderID'</td>
+                    <td>Retrieves a single order from the database</td>
+                </tr>
+                <tr>
+                    <td>POST</td>
+                    <td>/user/:userID/order</td>
+                    <td>To add an order</td>
+                </tr>
+                <tr>
+                    <td>PUT/PATCH</td>
+                    <td>user/:userID/order/:orderID'</td>
+                    <td>Updates an order record</td>
+                </tr>
+                <tr>
+                    <td>DELETE</td>
+                    <td>/user/:userID/order</td>
+                    <td>Deletes a single order from the database</td>
+                </tr>
+                <tr>
+                    <td>DELETE</td>
+                    <td>user/:userID/order/:orderID</td>
+                    <td>Deletes all orders from the database</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
 </body>
 </html>

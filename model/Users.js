@@ -1,4 +1,4 @@
-import {connection as db} from '../config/index.js' 
+import {connection as db} from '../config/config.js' 
 import {createToken} from '../middleware/userAuth.js'
 import { compare, hash } from    'bcrypt' 
 
@@ -10,7 +10,7 @@ fetchUsers(req, res) {
             SELECT userName , userSurname, userEmailAdd, userRole, userUrl
             FROM Users;`
             db.query(strQry, (err, results) => {
-                if(err)  throw new Error(`Unable to fetch all users`) 
+                if(err)  console.log(err)//throw new Error(`Unable to fetch all users`) 
                     res.json({
                 status: res.statusCode, results
                     })
