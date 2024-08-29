@@ -1,4 +1,4 @@
-import {connection as db} from '../config/index.js'
+import {connection as db} from '../config/config.js'
 
 class Products {
  

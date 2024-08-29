@@ -37,3 +37,7 @@ orderRouter.delete('/orders/:id', authenticateToken, (req, res) => {
 orderRouter.delete('/order/:id', authenticateToken, (req, res) => {
     orders.deleteOrder(req, res)
 })
+
+export {
+    orderRouter
+}
