@@ -14,7 +14,6 @@ userRouter.get('/', (req, res) => {
     users.fetchUsers(req, res)
 })
 // Retrieve a single User
-//authenticateToken
 userRouter.get('/:id', (req, res) => {
     users.fetchUser(req, res)
 })
@@ -23,7 +22,6 @@ userRouter.get('/:id', (req, res) => {
 userRouter.post('/register',  (req, res) => {
     users.registerUser(req,res)
 })
-
 //Update a single User
 userRouter.patch('/:id',(req, res) => {
     users.updateUser(req, res)

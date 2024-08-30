@@ -1,6 +1,7 @@
 import {connection as db} from '../config/config.js' 
 import {createToken} from '../middleware/userAuth.js'
 import { compare, hash } from    'bcrypt' 
+import { users } from './index.js'
 
 
 class Users {
@@ -57,21 +58,21 @@ fetchUser(req, res) {
     }
 }
 
-async registerUser(req, res) {
+async  registerUser(req, res) {
     try {
         let data = req.body
-        data.userPass = await hash(data.userPass, 12)     
+        data.userPass = await hash(data.userPass, 12)  
         // Payload
         let user = {
-            userEmailAdd: user.userEmailAdd,
-            userPass: user.userPass
+            userName: data.userName,
+             userPass: data.userPass
         }
         let strQry = `
         INSERT INTO Users
-        SET ?` 
+        SET ?`
         db.query(strQry, [data], (err) => {
         if(err) {
-            res.json({
+             res.json({
                 status: res.statusCode,
                 msg: 'The email provided is already in use'
             })
@@ -89,7 +90,9 @@ async registerUser(req, res) {
             msg: 'Unable to add new user.Please try again later'
         })
         }
-}
+        }
+        
+
  async updateUser(req, res) {
     try{
         let data = req.body       
@@ -177,7 +180,8 @@ async login(req, res) {
                       res.json({
                           status: res.statusCode,
                           token,
-                          result: result[0]
+                          result: result[0],
+                          msg: 'Welcome Back'
                       })
                   } else {
                       res.json({

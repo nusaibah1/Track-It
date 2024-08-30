@@ -1,20 +1,12 @@
 import {connection as db} from '../config/config.js'
-
 import {authenticateToken} from '../middleware/userAuth.js'
 
 
 class Orders {
-    /*
-    orderID ,
-userID ,
-orderDate,
-prodName
-State,
-Total DECIMAL(18, 2) NOT NULL */
-    fetchOrders(req, res) {
+fetchOrders(req, res) {
         try{
          const strQry = `
-         SELECT orderID, userID, orderDate, prodName, State, orderQuantity,Total
+         SELECT orderID, userID, prodName, State, orderQuantity,Total
          FROM Orders;`
          db.query(strQry, (err, results) => {
             if(err) throw new Error(`Unable to retrieve all orders`)
@@ -33,7 +25,7 @@ Total DECIMAL(18, 2) NOT NULL */
 fetchOrder(req, res) {
     try{
         const strQry = `
-        SELECT orderID, userID, orderDate, prodName, State, Total
+        SELECT orderID, userID, prodName, State, Total
         FROM Orders
         WHERE orderID = ${req.params.id};`
         db.query(strQry, (err, result) => {
@@ -65,50 +57,30 @@ fetchOrder(req, res) {
 
 
     async addOrder(req, res) {
-        try {
-          // Authenticate token
-          const decoded = await authenticateToken(req);
-          if (!decoded) {
-            return res.json({
-              status: 401,
-              msg: 'Unauthorized: Invalid token'
-            });
-          }
-      
-          // Get user ID from decoded token
-          const userID = decoded.userID;
-      
-          // Get order data from request body
-          const data = {...req.body, userID };
-      
-          // Insert order into database
-          const strQry = `
+      try {
+        let data = req.body
+        const strQry = `
             INSERT INTO Orders
-            SET ?
-          `;
-          db.query(strQry, [data], (err) => {
-            if (err) {
-              res.json({
+            SET ?`
+        db.query(strQry, [data], (err) => {
+            if (err) throw new Error('Unable to add new order')
+            res.json({
                 status: res.statusCode,
-                msg: 'Error adding order.Please try again later'
-              });
-            } else {
-              res.json({
-                status: res.statusCode,
-                msg: 'Order added successfully'
-              });
-            }
-          });
-        } catch (e) {
-          res.json({
-            status: 500,
-            msg: 'Internal Server Error'
-          });
-        }
-      }
+                msg: 'Order succesfully placed'
+            })
+        })
+    } catch (e) {
+        res.json({
+            status: 404,
+            err: e.message
+        })
+    }
+}
 
       async updateOrder(req, res) {
-        try{
+       try{
+        let data = req.body
+
         const strQry = `
         UPDATE Orders
         SET ? 
@@ -124,7 +96,7 @@ fetchOrder(req, res) {
         } catch(e){
             res.json({
                 status: 400,
-                msg: e.message
+                 msg: 'Internal Error. Please contact the surpport team'
              })
       } 
       }
@@ -136,7 +108,7 @@ deleteOrders(req, res) {
 if(err) {
     res.json({
         status: res.statusCode,
-        msg:'Error deleting all order records. Please try again later.'
+        msg:'Error deleting all order records.'
     })
 } else {
     res.json({
