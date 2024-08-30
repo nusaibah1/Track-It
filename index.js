@@ -3,7 +3,7 @@ import path from 'path'
 import {connection as db} from './config/config.js' 
 import { userRouter} from './controller/userController.js'
 import  {itemRouter} from './controller/itemController.js'
-import {orderRouter} from './controller/orderController.js'
+
  
 //Express Application
 const app = express()
@@ -20,7 +20,7 @@ app.use(router,
 )
 app.use('/user', userRouter)
 app.use('/item', itemRouter)
-app.use('/user/:userID/', orderRouter)
+
 
 // Endpoint
 router.get('^/$|/TrackIt', (req, res) => {
