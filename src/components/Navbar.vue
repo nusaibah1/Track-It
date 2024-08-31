@@ -17,7 +17,7 @@
           <router-link class="nav-link" to="/report">Report</router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="/report">Support</router-link>
+          <router-link class="nav-link" to="/support">Support</router-link>
         </li>
         
       </ul>
