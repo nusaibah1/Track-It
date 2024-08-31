@@ -1,6 +1,8 @@
 <template>
     <div>
-        <h1>Report</h1>
+        <h1>
+            Sign Up
+        </h1>
     </div>
 </template>
 
@@ -13,7 +15,7 @@
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 
 </style>
