@@ -4,6 +4,7 @@ import {toast} from 'vue3-toastify'
 import router from '@/router'
 import { useToken } from '@/service/userAuth'
 import { useCookies } from 'vue3-cookies'
+
   
 const {cookies} = useCookies()
 
@@ -84,7 +85,7 @@ export default createStore({
   },
  
   // ===Add A User====
- async addUser(context, payload) {
+ async register(context, payload) {
   try{
   const { msg, err, token } = await (await axios.post(`${apiURL}users/register`, payload)).data
   if(token) {
