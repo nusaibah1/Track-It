@@ -1,4 +1,4 @@
-<template>
+ <template>
    <nav class="navbar navbar-expand-md navbar-expand-lg ">
   <div class="container-fluid">
     <router-link class="navbar-brand" to="/"><img src="https://nusaibah1.github.io/inventoryImages/images/rmlogo.png" alt="logo"></router-link>
@@ -16,9 +16,12 @@
         <li class="nav-item">
           <router-link class="nav-link" to="/report">Report</router-link>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <router-link class="nav-link" to="/signUp">Sign Up</router-link>
         </li>
+        <li class="nav-item">
+          <router-link class="nav-link" to="/login">Sign In</router-link>
+        </li> -->
         <li class="nav-item">
           <router-link class="nav-link" to="/support">Support</router-link>
         </li>
@@ -27,16 +30,9 @@
     </div>
   </div>
 </nav>
-</template>
+</template> 
 
-<script>
 
-    export default {
-   name: 'NvabarComp'
-    
-
-}
-</script>
 
 <style>
 nav-link{
@@ -49,20 +45,33 @@ nav-link{
 
 }
 .nav-link:hover{
-  color: grey;
+  color: white;
 }
 .nav-link:active{
   color: beige;
   text-decoration: none;
 }
-
+.nav-link{
+  color: grey;
+  font-family: "Michroma", system-ui;
+}
     
 img[alt='logo'] {
     width: 5rem;
 }
 .navbar{
-    background-color: black;
+    background-color:  slategrey;
     overflow: hidden;
 }
 
 </style>
+
+
+<script>
+
+    export default {
+   name: 'NvabarComp'
+    
+
+}
+</script>

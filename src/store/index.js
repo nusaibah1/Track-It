@@ -140,6 +140,31 @@ async removeUser(context, id) {
   }
 },
 
+
+// === Login  ===
+
+async login(context, payload) {
+  try {
+    const { msg, err, token} = await( await axios.post(`${apiURL}user/login`, payload)).data
+    if(token) {
+      context.commit('retrieveUser')
+      toast.success(`${msg}`, {
+        autoClose: 3000
+      })
+    }
+    else{
+      toast.error(`${err}`, {
+        autoClose: 3000
+      })
+
+    }
+} catch(e) {
+ toast.error(`${e.message}` , {
+  autoClose: 3000
+ })
+}
+},
+
 // ===Retrieve All Items ====
 
 async retrieveItems(context) {
