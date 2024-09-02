@@ -2,6 +2,8 @@
     <div>
         <h1>Report</h1>
     </div>
+    <p></p>
+<button>generate</button>
 </template>
 
 <script>
@@ -13,7 +15,9 @@
 }
 </script>
 
-<style scoped>
-
+<style>
+h1{
+    text-align: center;
+}
 
 </style>
