@@ -17,9 +17,11 @@
           <router-link class="nav-link" to="/report">Report</router-link>
         </li>
         <li class="nav-item">
+          <router-link class="nav-link" to="/signUp">Sign Up</router-link>
+        </li>
+        <li class="nav-item">
           <router-link class="nav-link" to="/support">Support</router-link>
         </li>
-        
       </ul>
       
     </div>
