@@ -1,74 +1,36 @@
 <template>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-2 bg-light sidebar">
-        <!-- sidebar content here -->
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link active" href="#">Dashboard</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-        </ul>
-      </div>
-      <div class="col-md-10 main-content">
-        <!-- main content here -->
-        <div class="row">
-          <div class="col-md-4">
-            <div class="card">
-              <div class="card-header">Profit<i class="bi bi-graph-up"></i></div>
-              <div class="card-body">
-                <p class="card-text">Card content</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card">
-              <div class="card-header">Loss<i class="bi bi-graph-down-arrow"></i></div>
-              <div class="card-body">
-                <p class="card-text">Card content</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card">
-              <div class="card-header">Card title</div>
-              <div class="card-body">
-                <p class="card-text">Card content</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <Navbar/>
+  <div class="container">
+    <h1>Welcome to TrackIt</h1>
+    <p>A tactful inventory management tool dedicated to making your life simpler.</p>
+    <LogIn/>
+    <SignUp/>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'HomeView'
+import Navbar from '../components/Navbar.vue';
+import LogIn from '@/views/LogInView.vue'
+import SignUp from './SignUpView.vue';
+  export default {
+components: {
+  LogIn,
+  SignUp,
+  Navbar
+}
+  
+
 }
 </script>
 
 <style scoped>
-.sidebar {
-  height: 100vh;
-  position: sticky;
-  top: 0;
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-.main-content {
-  padding: 20px;
-}
-::-webkit-scrollbar{
-  display:none;
-}
-.card-headerO{
- background-color: green;
-}
-.card-header{
-  background-color: red;
-  font-family:monospace;
+h1,h2, h5,p{
+    text-align: center;
+    font-family: "Michroma", sans-serif; 
 }
 </style>

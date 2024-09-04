@@ -1,12 +1,15 @@
 <template>
-    <footer class="container-fluid">
+    <div></div>
+    
+
+    <!-- <footer class="container-fluid">
         <div class="row">
             <footer class="t">Track It &copy; <span>
                 {{ currentYear }} 
                 </span>
          </footer>
         </div>
-    </footer>
+    </footer> -->
 </template>
 
 <script>
