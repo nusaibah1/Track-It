@@ -1,6 +1,6 @@
 import express from 'express'
 import path from 'path'
-// import {connection as db} from './config/config.js' 
+import {connection as db} from './config/config.js' 
 import { userRouter} from './controller/userController.js'
 import  {itemRouter} from './controller/itemController.js'
 
@@ -18,6 +18,7 @@ app.use((req, res, next) => {
     res.header("Access-Control-Request-Methods", "*");
     res.header("Access-Control-Allow-Headers", "*");
     res.header("Access-Control-Expose-Headers", "Authorization");
+  
     next()
 })
 app.use(router, 
@@ -27,13 +28,12 @@ app.use(router,
     extended: true
     })
 
-)
+);
 
 app.use('/user', userRouter)
-app.use('/order', userRouter)
 app.use('/item', itemRouter)
 
-g
+
 // Endpoint
 router.get('^/$|/TrackIt', (req, res) => {
     res.status(200).sendFile(path.resolve('./static/html/index.html'))
