@@ -20,7 +20,9 @@ export default createStore({
     item: null,
     recentItems: null,
     orders: null,
-    order: null
+    order: null,
+    suppliers: null,
+    supplier: null
   },
   getters: {
 },
@@ -49,9 +51,9 @@ export default createStore({
   },
   actions: {
     // ===Fetch All Users ===
-  async retrieveUsers(context) {
+  async fetchUsers(context) {
     try{
-      const { results, msg } = await(await axios.get(`${apiURL}users`)).data
+      const { results, msg } = await(await axios.get(`${apiURL}user`)).data
     if(results) {
       context.commit('setUsers', results )
     } else {
@@ -67,9 +69,9 @@ export default createStore({
   },
 
   //===Fetch A Single User===
-  async  retrieveUser(context, id) {
+  async  fetchUser(context, id) {
     try{
-      const { result, msg } = await (await axios.get(`${apiURL}users/${id}`)).data 
+      const { result, msg } = await (await axios.get(`${apiURL}user/${id}`)).data 
       if(result) {
         context.commit('setUser', result)
 } else {
@@ -87,13 +89,13 @@ export default createStore({
   // ===Add A User====
  async register(context, payload) {
   try{
-  const { msg, err, token } = await (await axios.post(`${apiURL}users/register`, payload)).data
+  const { msg, err, token } = await (await axios.post(`${apiURL}user/register`, payload)).data
   if(token) {
-    context.dispatch('retrieveUsers')
+    context.dispatch('fetchUsers')
     toast.success(`${msg}` , {
       autoClose: 3000
     })
-    router.push({ name: 'login'})
+    // router.push({ name: 'login'})
   } else {
     toast.error(`${err}`, {
       autoClose: 3000
@@ -105,12 +107,13 @@ export default createStore({
  })
   }
  },
+ 
 //  ===Update A Single User====
 async updateUser(context, payload) {
   try{
-    const { msg, err} = await (await axios.patch(`${apiURL}users/update/${payload.userID}`, payload)).data
+    const { msg, err} = await (await axios.patch(`${apiURL}user/update/${payload.userID}`, payload)).data
     if(msg) {
-      context.dispatch('retrieveUsers')
+      context.dispatch('fetchUsers')
     } else {
       toast.error(`${err}`, {
         autoClose: 3000
@@ -123,11 +126,11 @@ async updateUser(context, payload) {
   }
 },
 // ===Remove A User===
-async removeUser(context, id) {
+async deleteUser(context, id) {
   try{
-    const {msg, err} = await (await axios.delete(`${apiURL}users/delete/${id}`)).data
+    const {msg, err} = await (await axios.delete(`${apiURL}user/delete/${id}`)).data
   if(msg) {
-    context.dispatch('retrieveUsers')
+    context.dispatch('fetchUsers')
   } else {
     toast.error(`${err}` ,{
       autoClose: 3000
@@ -147,7 +150,7 @@ async login(context, payload) {
   try {
     const { msg, err, token} = await( await axios.post(`${apiURL}user/login`, payload)).data
     if(token) {
-      context.commit('retrieveUser')
+      context.commit('fetchUser')
       toast.success(`${msg}`, {
         autoClose: 3000
       })
@@ -167,9 +170,9 @@ async login(context, payload) {
 
 // ===Retrieve All Items ====
 
-async retrieveItems(context) {
+async fetchItems(context) {
   try{
-    const {results} = await (await axios.get(`${apiURL}items`)).data
+    const {results} = await (await axios.get(`${apiURL}item`)).data
     if(results) {
       context.commit('setItems', results)
     } else {
@@ -185,7 +188,7 @@ async retrieveItems(context) {
 // ===Retrieve New Items ===
 async newItems(context) {
   try{
-   const { results, msg } = await (await axios.get(`${apiURL}items/new`)).data
+   const { results, msg } = await (await axios.get(`${apiURL}item/new`)).data
   if(results) {
     context.commit('setNewItems', results)
   } else{
@@ -200,9 +203,9 @@ async newItems(context) {
   }
 },
 //==== Retrieve an Item ====
- async retrieveItem(context, id) {
+ async fetchItem(context, id) {
   try{
-   const { result, msg } = await (await axios.get(`${apiURL}items/${id}`)).data
+   const { result, msg } = await (await axios.get(`${apiURL}item/${id}`)).data
     if(result) {
       context.commit('setItem', result)
     } else {
@@ -221,9 +224,9 @@ async newItems(context) {
 //  ====Add an Item ===
   async  addItem(context, payload) {
     try{
-      const { msg } = await (await axios.post(`${apiURL}products/add`, payload)).data
+      const { msg } = await (await axios.post(`${apiURL}item/add`, payload)).data
     if(msg) {
-      context.dispatch('retrieveItems')
+      context.dispatch('fetchItems')
       toast.success(`${msg}`, {
         autoClose: 3000
       })
@@ -238,9 +241,9 @@ async newItems(context) {
   // Update an Item
 async updateItem(context, payload) {
   try{
-    const { msg } = await (await axios.patch(`${apiURL}items/update/${payload.prodID}`)).data
+    const { msg } = await (await axios.patch(`${apiURL}item/update/${payload.prodID}`)).data
     if(msg) {
-      context.dispatch('retrieveItems')
+      context.dispatch('fetchItems')
       toast.success(`${msg}`, {
         autoClose: 3000
       })
@@ -255,9 +258,9 @@ async updateItem(context, payload) {
 // === Remove An Item ===
 async removeItem(context, id) {
   try{
-    const { msg } = await ( await axios.delete(`${apiURL}items/delete/${id}`)).data
+    const { msg } = await ( await axios.delete(`${apiURL}item/delete/${id}`)).data
   if(msg) {
-    context.dispatch('retrieveItems')
+    context.dispatch('fetchItems')
     toast.success(`${msg}`, {
       autoClose: 3000
     })
