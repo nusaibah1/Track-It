@@ -5,11 +5,10 @@ class Products {
     fetchProducts(req, res) {
         try {
             const strQry = `
-            SELECT prodID, SKU, prodURL, prodName, prodDescription, Price,Quantity ,Category ,SuppID 
+            SELECT prodID, SKU, prodURL, prodName, prodDescription,prodQuantity ,Category ,SuppID 
             FROM Products;`
             db.query(strQry, (err, results) => {
-                // 'Unable to retrieve all products'
-                if (err) throw new Error(err.message)
+                if (err) throw new Error('Unable to retrieve all products')
                 res.json({
                     status: res.statusCode,
                     results
