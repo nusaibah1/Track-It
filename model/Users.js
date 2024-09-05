@@ -1,7 +1,6 @@
 import {connection as db} from '../config/config.js' 
 import {createToken} from '../middleware/userAuth.js'
 import { compare, hash } from    'bcrypt' 
-import { users } from './index.js'
 
 
 class Users {
@@ -244,6 +243,22 @@ async login(req, res) {
       }) 
         }
 }
+fetchReports(req, res) {
+    try{
+     const strQry = `
+     `
+    }catch(e) {
+        //
+    }
+}
+fetchReport() {
+    try{
+        const strQry =``
+    } catch(e) {
+        //
+    }
+}
+  
 }
 
 
