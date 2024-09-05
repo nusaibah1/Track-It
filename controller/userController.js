@@ -46,7 +46,7 @@ userRouter.get('/:id/orders', (req, res) => {
 })
 
 // Retrieve an order based off the userID
-userRouter.get('/:id/order/:orderID', (req, res) => {
+userRouter.get('/:userID/order/:orderID', (req, res) => {
     orders.fetchOrder(req,res)
 })
 
