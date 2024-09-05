@@ -5,10 +5,11 @@ class Products {
     fetchProducts(req, res) {
         try {
             const strQry = `
-       SELECT prodID, SKU, prodURL, prodName, prodDescription, Price,Quantity ,Category ,SuppID 
-       FROM Products;`
+            SELECT prodID, SKU, prodURL, prodName, prodDescription, Price,Quantity ,Category ,SuppID 
+            FROM Products;`
             db.query(strQry, (err, results) => {
-                if (err) throw new Error('Unable to retrieve all products')
+                // 'Unable to retrieve all products'
+                if (err) throw new Error(err.message)
                 res.json({
                     status: res.statusCode,
                     results
@@ -47,9 +48,9 @@ class Products {
     fetchProduct(req, res) {
         try {
             const strQry = `
-SELECT prodID, SKU, prodURL, prodName, prodDescription, Price, Quantity ,Category, SuppID 
-       FROM Products
-       WHERE prodID = ${req.params.id};`
+            SELECT prodID, SKU, prodURL, prodName, prodDescription, Price, Quantity ,Category, SuppID 
+            FROM Products
+            WHERE prodID = ${req.params.id};`
             db.query(strQry, (err, result) => {
                 if (err) throw new Error('Unable to retrieve product')
                 res.json({
@@ -67,8 +68,8 @@ SELECT prodID, SKU, prodURL, prodName, prodDescription, Price, Quantity ,Categor
     addProduct(req, res) {
         try {
             const strQry = `
-    INSERT INTO Products
-    SET ?`
+            INSERT INTO Products
+            SET ?`
             db.query(strQry, [req.body], (err) => {
                 if (err) throw new Error('Unable to add new product')
                 res.json({
@@ -86,9 +87,9 @@ SELECT prodID, SKU, prodURL, prodName, prodDescription, Price, Quantity ,Categor
     updateProduct(req, res) {
         try {
             const strQry = `
-UPDATE Products
-SET ? 
-WHERE prodID = ${req.params.id};`
+            UPDATE Products
+            SET ? 
+            WHERE prodID = ${req.params.id};`
             db.query(strQry, [req.body], (err) => {
                 if (err) throw new Error('Unable to update product')
                 res.json({
@@ -106,8 +107,8 @@ WHERE prodID = ${req.params.id};`
     deleteProduct(req, res) {
         try {
             const strQry = `
-DELETE FROM Products
-WHERE prodID = ${req.params.id};`
+            DELETE FROM Products
+            WHERE prodID = ${req.params.id};`
             db.query(strQry, (err) => {
                 if (err) throw new Error('Unable to delete specified product.Please try again later')
                 res.json({
