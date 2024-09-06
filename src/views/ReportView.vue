@@ -59,7 +59,7 @@
         </div>
         <div class="col py-3">
             
-            <button class="btn bg-primary">Generate Report</button>
+            <button class="btn bg-secondary">Generate Report</button>
      
             <h3>Orders</h3>
             <table class="table table-bordered">
@@ -151,10 +151,11 @@ export default {
 <style  scoped>
 h3{
     text-align: center;
+    color: bisque;
   
 }
 
-table{
+table,h3, button{
     font-family: "Michroma", sans-serif;   
 }
 </style>
