@@ -1,9 +1,12 @@
 import express from 'express'
 import path from 'path'
+import cors from 'cors'
 import {connection as db} from './config/config.js' 
 import { userRouter} from './controller/userController.js'
+import { supplierRouter } from './controller/supplierController.js'
 import  {itemRouter} from './controller/itemController.js'
-import cors from 'cors'
+
+
 
  
 //Express Application
@@ -33,6 +36,7 @@ app.use(router,
 app.use(cors())
 app.use('/user', userRouter)
 app.use('/item', itemRouter)
+app.use('/supplier', supplierRouter)
 
 // Endpoint
 router.get('^/$|/TrackIt', (req, res) => {
