@@ -26,16 +26,23 @@ const routes = [
     component: () => import('@/views/LogInView.vue')
   },
 
-  {
-    path: '/support',
-    name: 'support',
-    component: () => import('@/views/SupportView.vue')
-  },
+ 
   {
     path: '/signUp',
     name: 'signUp',
-    component: () => import('@/views/LogInView.vue')
+    component: () => import('@/views/SignUpView.vue')
   },
+  {
+    path: '/suppliers',
+    name: 'suppliers',
+    component: () => import('@/views/SuppliersView.vue')
+  },
+  {
+path: '/items',
+name: 'items',
+component: () => import('@/views/ItemView.vue')
+  },
+ 
   {
     path: '/about',
     name: 'about',

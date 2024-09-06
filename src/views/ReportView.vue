@@ -26,43 +26,23 @@
                     </li>
                     <li>
                         <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                            <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">People</span></a>
-                        <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
-                            <li class="w-100">
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">HR</span> 1</a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Suppliers</span> 2</a>
-                            </li>
-                        </ul>
+                            <i class="fs-4 bi-people"></i><span class="ms-1 d-none d-sm-inline">Users</span></a>
+                        
                     </li>
                     <li>
-                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Products</span> </a>
-                            <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
-                            <li class="w-100">
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 1</a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 2</a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 3</a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 4</a>
-                            </li>
-                        </ul>
+                        <router-link href="#submenu3" to="/about" class="nav-link px-0 align-middle" >
+                            <i class="fs-4 bi-blockquote-left"></i><span class="ms-1 d-none d-sm-inline">About</span> </router-link>
+                           
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Customers</span> </a>
+                        <router-link to="/suppliers" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-truck"></i> <span class="ms-1 d-none d-sm-inline">Suppliers</span> </router-link>
                     </li>
                 </ul>
                 <hr>
                 <div class="dropdown pb-4">
                     <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
+                        <img src="https://nusaibah1.github.io/inventoryImages/images/admin.jpg" alt="hugenerd" width="30" height="30" class="rounded-circle">
                         <span class="d-none d-sm-inline mx-1">Admin</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
@@ -78,110 +58,20 @@
             </div>
         </div>
         <div class="col py-3">
-        <h3>Suppliers</h3>
-  <table class="table table-bordered">
-    <thead>
-   
-                     <tr>
-                        <th>SupplierID</th>
-                        <th>Company</th>
-                        <th>Agent</th>
-                        <th>Email Address</th>
-                        <th>Phone Number</th>
-                        
-                        
-                    </tr>
-                </thead>
-                <tbody v-if="suppliers">
-                    <tr v-for="supplier in suppliers" :key="supplier.SuppID">
-                        <td>{{ supplier.SuppID }}</td>
-                        <td><img :src="supplier.userUrl" :alt="supplier.suppAgent" class="img-thumbnail"></td>
-                        <td>{{ supplier.suppAgent }}</td>
-                       <td>{{ supplier.suppCompany}}</td>
-                        <td>{{ supplier.emailAdd }}</td>
-                        <td>{{ supplier.phoneNum}}</td>
-                        
-                    </tr>
-                </tbody>
-                <tbody v-else>
-                    <Spinner />
-                </tbody>
-            </table>     
+            
+            <button class="btn bg-primary">Generate Report</button>
+     
             <h3>Orders</h3>
             <table class="table table-bordered">
                 <thead>
-        <tr>
-                       <th>OrderID</th>
-                        <th>UserID</th>
-                        <th>Product</th>
-                        <th>Status</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
-                       
-                    </tr>
-                </thead>
-                <tbody v-if="orders">
-                    <tr v-for="order in orders" :key="order.orderID">
-                        <td>{{ order.orderID }}</td>
-                        <td><img :src="payload.prodURL" :alt="payload.prodName" class="img-thumbnail"></td>
-                        <td>{{ order. userID }}</td>
-                        <td>{{ order.prodName }}</td>
-                        <td>{{ order.State}}</td>
-                        <td>{{ order.orderQuantity }}</td>
-                        <td>{{ order.Total }}</td>
-                        
-                    </tr>
-                </tbody>
-                <tbody v-else>
-                    <Spinner />
-                </tbody>
-            </table>
-            <h3>
-                Items
-            </h3>
-            <table class="table table-bordered">
-    <thead>
-
-                    
                     <tr>
-                        <th>Item ID</th>
-                        <th>SKU</th>
-                        <th>Product</th>
-                        <th>Description</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Catergory</th>
-                        <th>Supplier ID</th>
-                      
-                    </tr>
-                </thead>
-                <tbody v-if="items">
-                    <tr v-for="item in items" :key="item.prodID">
-                        <td>{{ item.prodID }}</td>
-                        <td><img :src="item.user" :alt="item.prodName" class="img-thumbnail"></td>
-                        <td>{{ item.prodName }}</td>
-                        <td>{{ item.prodDescription  }}</td>
-                        <td>{{ item.Price}}</td>
-                        <td>{{ item.Quantity }}</td>
-                        <td>{{ item.Catergory }}</td>
-                        <td>{{ item.SuppID }}</td>
-                        
-                    </tr>
-                </tbody>
-                <tbody v-else>
-                    <Spinner />
-                </tbody>
-            </table>
-            <h3>Orders</h3>
-            <table class="table table-bordered">
-                <thead>
-        <tr>
-                       <th>OrderID</th>
-                        <th>UserID</th>
-                        <th>Product</th>
-                        <th>Status</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
+                    <th>OrderID</th>
+                    <th>Image</th>
+                    <th>User ID</th>
+                    <th>Product</th>
+                    <th>Status</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
                        
                     </tr>
                 </thead>
@@ -189,8 +79,8 @@
                     <tr v-for="order in orders" :key="order.orderID">
                         <td>{{ order.orderID }}</td>
                         <td><img :src="payload.prodURL" :alt="payload.prodName" class="img-thumbnail"></td>
-                        <td>{{ order. userID }}</td>
-                        <td>{{ order.prodName }}</td>
+                        <td>{{ payload.userID }}</td>
+                         <td>{{ order.prodName }}</td>
                         <td>{{ order.State}}</td>
                         <td>{{ order.orderQuantity }}</td>
                         <td>{{ order.Total }}</td>
@@ -201,33 +91,67 @@
                     <Spinner />
                 </tbody>
             </table>
+          
+            
        </div>
     </div>
 </div>
+<Footer/>
 </template>
 
 <script>
-
-
 import Spinner from '@/components/Spinner.vue';
-//import Card from '../components/Card.vue';
+import Footer from '@/components/Footer.vue';
+// import Card from '../components/Card.vue';
 
-
-
-
-    export default {
-components: {
-    Spinner
-    //Card
+export default {
+  components: {
+    Spinner,
+    Footer
+    // Card
+  },
+  data() {
+    return {
+        payload: {
+            userID: '',
+        },
+      order: {
+        orderID: '',
+       
+        prodName: '',
+        State: '',
+        orderQuantity: '',
+        Total: ''
+      }
+    };
+  },
+  computed: {
+    orders() {
+      return this.$store.state.orders;
+    }
+  },
+  mounted() {
+    this.$store.dispatch('fetchOrders'); 
+  },
+  methods: {
+  fetchUserOrders() {
+    const userID = this.$store.state.user?.userID; // Get userID from the store
+    if (userID) {
+      this.$store.dispatch('fetchOrders', { userID }); // Pass the userID as payload
+    } else {
+      console.error('userID is undefined');
+    }
+  }
+}
 }
 
-}
 </script>
+
 
 <style  scoped>
 h3{
     text-align: center;
-    font-family: "Michroma", sans-serif; 
+  
 }
 
 table{

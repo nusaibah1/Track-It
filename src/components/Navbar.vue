@@ -16,15 +16,16 @@
         <li class="nav-item">
           <router-link class="nav-link" to="/report">Report</router-link>
         </li> 
-        <!-- <li class="nav-item">
+        <li class="nav-item">
           <router-link class="nav-link" to="/signUp">Sign Up</router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="/login">Sign In</router-link>
-        </li> -->
-        <li class="nav-item">
-          <router-link class="nav-link" to="/support">Support</router-link>
+          <router-link class="nav-link" to="/items">Items</router-link>
         </li>
+        <li class="nav-item">
+          <router-link class="nav-link" to="/login">Sign In</router-link>
+        </li>
+       
       </ul>
       
     </div>
@@ -45,14 +46,14 @@ nav-link{
 
 }
 .nav-link:hover{
-  color: white;
+  color: white !important;
 }
 .nav-link:active{
   color: beige;
   text-decoration: none;
 }
 .nav-link{
-  color: grey;
+  color: bisque !important;
   font-family: "Michroma", system-ui;
 }
     
@@ -60,7 +61,7 @@ img[alt='logo'] {
     width: 5rem;
 }
 .navbar{
-    background-color:  slategrey;
+    background-color:  rgb(33, 33, 33);
     overflow: hidden;
 }
 
