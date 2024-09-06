@@ -4,11 +4,12 @@ class Products {
  
     fetchProducts(req, res) {
         try {
+  
             const strQry = `
-            SELECT prodID, SKU, prodURL, prodName, prodDescription,prodQuantity ,Category ,SuppID 
+            SELECT prodID, prodSKU, prodURL, prodName, prodDescription,prodQuantity,sellingPrice,Category,SuppID 
             FROM Products;`
             db.query(strQry, (err, results) => {
-                if (err) throw new Error('Unable to retrieve all products')
+                if (err) console.log(err)
                 res.json({
                     status: res.statusCode,
                     results
@@ -21,10 +22,11 @@ class Products {
             })
         }
     }
+
     recentProducts(req, res) {
         try {
             const strQry = `
-            SELECT prodID, SKU, prodURL, prodName, prodDescription, Price, Quantity ,Category, SuppID 
+            SELECT prodID,prodSKU, prodURL, prodName, prodDescription, prodQuantity,sellingPrice,prodCategory, SuppID 
             FROM Products
             ORDER BY prodID DESC
             LIMIT 5;`
@@ -45,9 +47,10 @@ class Products {
 
     }
     fetchProduct(req, res) {
+          
         try {
             const strQry = `
-            SELECT prodID, SKU, prodURL, prodName, prodDescription, Price, Quantity ,Category, SuppID 
+            SELECT prodID, prodSKU, prodURL, prodName, prodDescription,prodQuantity, sellingPrice,prodCategory, SuppID 
             FROM Products
             WHERE prodID = ${req.params.id};`
             db.query(strQry, (err, result) => {
@@ -73,7 +76,7 @@ class Products {
                 if (err) throw new Error('Unable to add new product')
                 res.json({
                     status: res.statusCode,
-                    msg: 'Product was succesfully added'
+                    msg: 'Product succesfully added'
                 })
             })
         } catch (e) {

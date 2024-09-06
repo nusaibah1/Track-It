@@ -41,6 +41,8 @@ itemRouter.delete('/:id',  (req, res) => {
     products.deleteProduct(req, res)
 })
 
+
+
 export {
     itemRouter
 }
