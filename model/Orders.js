@@ -150,8 +150,76 @@ deleteOrder(req, res) {
   })
     }
 }
+
+fetchLoss(req, res) {
+    try {
+        // Define the SQL query
+        const strQry = `
+            SELECT 
+                P.prodName,
+                S.quantitySold,
+                (S.sellingPrice - Sup.suppCostPrice) AS lossPerUnit,
+                (S.sellingPrice - Sup.suppCostPrice) * S.quantitySold AS totalLoss
+            FROM Sales S
+            JOIN Products P ON S.prodID = P.prodID
+            JOIN Suppliers Sup ON P.SuppID = Sup.SuppID
+            WHERE (S.sellingPrice - Sup.suppCostPrice) < 0;
+        `;
+
+        // Execute the query
+        db.query(strQry, (err, result) => {
+            if (err) {
+                console.error('Database query error:', err); // Log the error for debugging
+                return res.status(500).json({
+                    status: 500,
+                    msg: 'Unable to retrieve loss data'
+                });
+            }
+
+            // Send the result as a JSON response
+            res.json({
+                status: res.statusCode,
+                result: result
+            });
+        });
+    } catch (e) {
+        // Catch any unexpected errors
+        console.error('Unexpected error:', e); // Log the error for debugging
+        res.status(500).json({
+            status: 500,
+            msg: e.message
+        });
+    }
 }
 
+fetchProfit(req, res) {
+    try{
+     const strQry = `
+     SELECT 
+    P.prodName,
+    S.quantitySold,
+    (S.sellingPrice - Sup.suppCostPrice) AS profitPerUnit,
+    (S.sellingPrice - Sup.suppCostPrice) * S.quantitySold AS totalProfit
+    FROM Sales S
+    JOIN Products P ON S.prodID = P.prodID
+    JOIN Suppliers Sup ON P.SuppID = Sup.SuppID;
+     `
+     db.query(strQry, (err, result) => {
+        if(err) console.log(err) //throw new Error('Unable to retrieve profit')
+            res.json({
+        status: res.statusCode, result
+    })
+
+        
+     })
+    } catch(e) {
+     res.json({
+        status: 404,
+        msg: e.message
+     })
+    }
+}
+}
 export {
     Orders
 }
