@@ -1,21 +1,23 @@
 <template>
   <Navbar/>
-  <div class="container">
+  <div class="container-fluid">
     <h1>Welcome to TrackIt</h1>
     <p>A tactful inventory management tool dedicated to making your life simpler.</p>
-    <LogIn/>
-    <SignUp/>
+    <!-- <LoginView/> -->
+    <!-- <SignUp/> -->
   </div>
 </template>
 
 <script>
 import Navbar from '../components/Navbar.vue';
-import LogIn from '@/views/LogInView.vue'
-import SignUp from './SignUpView.vue';
-  export default {
+
+// import SignUp from './SignUpView.vue';
+// import LoginView from './LogInView.vue';
+export default {
 components: {
-  LogIn,
-  SignUp,
+  
+  // SignUp,
+  // LoginView,
   Navbar
 }
   

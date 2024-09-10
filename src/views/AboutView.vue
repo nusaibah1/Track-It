@@ -1,4 +1,5 @@
 <template>
+    <Navbar/>
 <div class="row display-2">
 <h1>About</h1>
 </div>
@@ -149,7 +150,7 @@ h1{
     text-align: center;
 }
 h3,h1{
-    color: darkgray;
+    color: bisque;
 }
 img{
     size: 350px !important;
@@ -161,10 +162,21 @@ img{
     width: 30%;
   
 }
-
+p:hover{
+    color: dimgrey;
+}
 /* #one{
     float: right;
 
  
 } */
 </style>
+
+<script>
+import Navbar from '@/components/Navbar.vue';
+export default{
+    components: {
+        Navbar
+    }
+}
+</script>

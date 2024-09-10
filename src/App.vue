@@ -2,24 +2,26 @@
 <div>
 <!-- <Navbar/> -->
 <div>
+  
  <router-view/>
 
+ <!-- <LineChart /> -->
+</div>
 
 </div>
-<Footer/>
-</div>
+
 </template>
 <script>
 
-import Footer from './components/Footer.vue';
-
+// import Footer from './components/Footer.vue';
+// import LineChart from './components/LineChart.vue';
 
 
 export default{
 components: {
 // Navbar,
-Footer,
-
+// Footer,
+// LineChart,
 
 }
 }

@@ -1,4 +1,5 @@
-<template>
+
+   <template>
   <div class="container-fluid">
     <div class="row flex-nowrap">
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
@@ -69,63 +70,89 @@
 <!-- <Footer/> -->
 </template>
 
+
+
+<!-- <template>
+    <div class="container-fluid">
+        <h3>Orders</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                    <th>OrderID</th>
+                    <th>Image</th>
+                    <th>User ID</th>
+                    <th>Product</th>
+                    <th>Status</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                       
+                    </tr>
+                </thead>
+                <tbody v-if="orders">
+                    <tr v-for="order in orders" :key="order.orderID">
+                        <td>{{ order.orderID }}</td>
+                        <td><img :src="payload.prodURL" :alt="payload.prodName" class="img-thumbnail"></td>
+                        <td>{{ payload.userID }}</td>
+                         <td>{{ order.prodName }}</td>
+                        <td>{{ order.State}}</td>
+                        <td>{{ order.orderQuantity }}</td>
+                        <td>{{ order.Total }}</td>
+                        
+                    </tr>
+                </tbody>
+                <tbody v-else>
+                    <Spinner />
+                </tbody>
+            </table>
+          
+    </div>
+    <Footer/>
+</template>
+
 <script>
 import Spinner from '@/components/Spinner.vue';
-
+import Footer from '@/components/Footer.vue';
 // import Card from '../components/Card.vue';
 
 export default {
   components: {
     Spinner,
-  
+    Footer
     // Card
   },
-//   data() {
-//     return {
-//         payload: {
-//             userID: '',
-//         },
-//       order: {
-//         orderID: '',
+  data() {
+    return {
+        payload: {
+            userID: '',
+        },
+      order: {
+        orderID: '',
        
-//         prodName: '',
-//         State: '',
-//         orderQuantity: '',
-//         Total: ''
-//       }
-//     };
-//   },
+        prodName: '',
+        State: '',
+        orderQuantity: '',
+        Total: ''
+      }
+    };
+  },
   computed: {
-    // orders() {
-    //   return this.$store.state.orders;
-    // }
+    orders() {
+      return this.$store.state.orders;
+    }
   },
   mounted() {
-    // this.$store.dispatch('fetchOrders'); 
+    this.$store.dispatch('fetchOrders'); 
   },
   methods: {
-//   fetchUserOrders() {
-//     const userID = this.$store.state.user?.userID; // Get userID from the store
-//     if (userID) {
-//       this.$store.dispatch('fetchOrders', { userID }); // Pass the userID as payload
-//     } else {
-//       console.error('userID is undefined');
-//     }
-//   }
+  fetchUserOrders() {
+    const userID = this.$store.state.user?.userID; // Get userID from the store
+    if (userID) {
+      this.$store.dispatch('fetchOrders', { userID }); // Pass the userID as payload
+    } else {
+      console.error('userID is undefined');
+    }
+  }
 }
 }
 
-</script>
-
-
-<style  scoped>
-h3{
-    text-align: center;
-    color: bisque;
-  
-}
-
-table,h3, button{
-    font-family: "Michroma", sans-serif;   
-}
-</style>
+</script> -->
