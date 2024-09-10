@@ -47,17 +47,17 @@
         </table>
         <button @click="addItem()">Add Item</button>
     </div>
-    <Footer/>
+    <!-- <Footer/> -->
 </template>
 
 <script>
 import Navbar from '@/components/Navbar.vue';
 import Spinner from '@/components/Spinner.vue';
-import Footer from '@/components/Footer.vue';
+
 export default {
     components: {
         Spinner,
-        Footer,
+    
         Navbar
     },
     data() {

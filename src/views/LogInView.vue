@@ -9,16 +9,16 @@
  <form class="form" @submit.prevent="login">
   <span class="input-span">
     <label for="email" class="label">Email</label>
-    <input type="email" name="email" id="email"
+    <input type="email" name="email" id="email" v-model="payload.userEmailAdd"
   /></span>
   <span class="input-span">
     <label for="password" class="label">Password</label>
-    <input type="password" name="password" id="password"
+    <input type="password" name="password" id="password" v-model="payload.userPass"
   /></span>
  
   <input class="submit" type="submit" value="Log in" />
-  <a href="/signUp"><span class="span">Don't have an account? Sign up</span>
-  </a>
+  <router-link to="/signUp"><span class="span">Don't have an account? Sign up</span>
+  </router-link>
 </form>
 </div>
 </template>

@@ -17,7 +17,6 @@ export default createStore({
 
     users: null,
     user: null,
-    
     items: null,
     item: null,
     recentItems: null,
@@ -27,8 +26,7 @@ export default createStore({
     supplier: null
   },
   getters: {
-    getUserID: (state) => state.user?.userID
-},
+  },
   mutations: {
     setUsers(state, value) {
       state.users = value
@@ -122,25 +120,24 @@ export default createStore({
     }
   },
       // ==== Update a User ========
-  async updateUser(context, payload) {
-    try {
-      console.log(payload?.userID);
-      const { msg, err } = await (await axios.patch(`${apiURL}user/update/${payload.userID}`, payload)).data
-      if (msg) {
-        context.dispatch('fetchUsers')
-      } else {
-        toast.error(`${err}`, {
-          autoClose: 3000
-   
-        })
-      }
-    } catch (e) {
-      toast.error(`${e.message}`, {
-        autoClose: 3000
-     
-      })
-    }
-  },
+      async updateUser(context, payload) {
+        try {
+          const { msg, err } = await (await axios.patch(`${apiURL}users/update/${payload.userID}`, payload)).data
+          if (msg) {
+            context.dispatch('fetchUsers')
+          } else {
+            toast.error(`${err}`, {
+              autoClose: 3000
+       
+            })
+          }
+        } catch (e) {
+          toast.error(`${e.message}`, {
+            autoClose: 3000
+         
+          })
+        }
+      },
       // ==== Remove a User ========
   async deleteUser(context, id) {
     try {
@@ -163,28 +160,62 @@ export default createStore({
 
 // === Login  ===
 
+// async login(context, payload) {
+//   try {
+//     const { msg, err, token} = await( await axios.post(`${apiURL}user/login`, payload)).data
+//     if(token) {
+//       context.commit('fetchUser')
+//       toast.success(`${msg}`, {
+//         autoClose: 3000
+//       })
+//       cookies.set('LegitUser', token)
+//     }
+//     else{
+//       toast.error(`${err}`, {
+//         autoClose: 3000
+//       })
+
+//     }
+// } catch(e) {
+//  toast.error(`${e.message}` , {
+//   autoClose: 3000
+//  })
+// }
+// },
+
+
 async login(context, payload) {
   try {
-    const { msg, err, token} = await( await axios.post(`${apiURL}user/login`, payload)).data
-    if(token) {
-      context.commit('fetchUser')
+    const { msg, result, token } = await (await axios.post(`${apiURL}user/login`, payload)).data
+    if (result) {
       toast.success(`${msg}`, {
-        autoClose: 3000
+        autoClose: 3000,
+       
       })
-      cookies.set('LegitUser', token)
-    }
-    else{
-      toast.error(`${err}`, {
-        autoClose: 3000
+      context.commit('setUser', {
+        msg,
+        result
       })
-
+      cookies.set('LegitUser', {token, msg, result})
+      useToken(token)
+    } else {
+      toast.error(`${msg}`, {
+        autoClose: 3000
+    
+      })
     }
-} catch(e) {
- toast.error(`${e.message}` , {
-  autoClose: 3000
- })
-}
+  } catch (e) {
+    toast.error(`${e.message}`, {
+      autoClose: 3000
+   
+    })
+  }
 },
+
+
+
+
+
 
 // ===Retrieve All Items ====
 
@@ -366,107 +397,107 @@ if(msg) {
 
 
 // === Retrieve All Orders ===
-async fetchOrders(context) {
-  try {
-    const userID = context.getters.getUserID; // Use the getter to fetch userID
+// async fetchOrders(context) {
+//   try {
+//     const userID = context.getters.getUserID; // Use the getter to fetch userID
 
-    if (!userID) {
-      throw new Error('User ID is undefined');
-    }
+//     if (!userID) {
+//       throw new Error('User ID is undefined');
+//     }
 
-    const { results, msg } = await (await axios.get(`${apiURL}user/${userID}/orders`)).data;
+//     const { results, msg } = await (await axios.get(`${apiURL}user/${userID}/orders`)).data;
 
-    if (results) {
-      context.commit('setOrders', results);
-    } else {
-      toast.error(`${msg}`, {
-        autoClose: 3000
-      });
-    }
-  } catch (e) {
-    toast.error(`${e.message}`, {
-      autoClose: 3000
-    });
-  }
-},
+//     if (results) {
+//       context.commit('setOrders', results);
+//     } else {
+//       toast.error(`${msg}`, {
+//         autoClose: 3000
+//       });
+//     }
+//   } catch (e) {
+//     toast.error(`${e.message}`, {
+//       autoClose: 3000
+//     });
+//   }
+// },
 
 
 
 //=== Retrieve a Single Order ===
-async fetchOrder(context, payload) {
-  try{
-    const { result, msg } = await (await axios.get(`${apiURL}user/${payload.userID || 1}/order/${payload.oderID || 1}`)).data
-    if (result) {
-      context.commit('setOrder', result)
-    } else {
-      toast.error(`${msg}`, {
-        autoClose: 3000
-      })
-    }
-  } catch(e) {
-    toast.error(`${e.message}`, {
-      autoClose: 3000
-    })
-  }
-}, 
+// async fetchOrder(context, payload) {
+//   try{
+//     const { result, msg } = await (await axios.get(`${apiURL}user/${payload.userID || 1}/order/${payload.oderID || 1}`)).data
+//     if (result) {
+//       context.commit('setOrder', result)
+//     } else {
+//       toast.error(`${msg}`, {
+//         autoClose: 3000
+//       })
+//     }
+//   } catch(e) {
+//     toast.error(`${e.message}`, {
+//       autoClose: 3000
+//     })
+//   }
+// }, 
 
 // === Add an Order ===
-async addOrder(context, payload) {
-  try{
-    const  { msg, err, token } = await (await axios.post(`${apiURL}user/${payload.userID}/order`, payload)).data
-  if(token) {
-    context.dispatch('fetchOrders')
-    toast.success(`${msg}`, {
-      autoClose: 3000
-    })
-    router.push({ name: 'login'})
-  } else {
-    toast.error(`${err}` , {
-      autoClose: 3000
-    })
-  }
-  } catch(e) {
-  toast.error(`${e.message}`, {
-    autoClose: 3000
-  })
-  }
-}, 
+// async addOrder(context, payload) {
+//   try{
+//     const  { msg, err, token } = await (await axios.post(`${apiURL}user/${payload.userID}/order`, payload)).data
+//   if(token) {
+//     context.dispatch('fetchOrders')
+//     toast.success(`${msg}`, {
+//       autoClose: 3000
+//     })
+//     router.push({ name: 'login'})
+//   } else {
+//     toast.error(`${err}` , {
+//       autoClose: 3000
+//     })
+//   }
+//   } catch(e) {
+//   toast.error(`${e.message}`, {
+//     autoClose: 3000
+//   })
+//   }
+// }, 
 
 //  === Update  an Order ===
-async updateOrder(context, payload) {
-  try{
-    const { msg, err} = await (await axios.patch(`${apiURL}user/${payload.userID}/order/${payload.orderID}`, payload)).data
-  if(msg) {
-    context.dispatch('fetchOrders')
-  } else {
-    toast.error(`${err}`, {
-      autoClose: 3000
-    })
-  }
-  } catch(e) {
-  toast.error(`${e.message}` , {
-    autoClose: 3000
-  })
-  }
-},
+// async updateOrder(context, payload) {
+//   try{
+//     const { msg, err} = await (await axios.patch(`${apiURL}user/${payload.userID}/order/${payload.orderID}`, payload)).data
+//   if(msg) {
+//     context.dispatch('fetchOrders')
+//   } else {
+//     toast.error(`${err}`, {
+//       autoClose: 3000
+//     })
+//   }
+//   } catch(e) {
+//   toast.error(`${e.message}` , {
+//     autoClose: 3000
+//   })
+//   }
+// },
 
 //  ===Delete An Order ===
-async removeOrder(context, payload) {
-  try{
-   const { msg, err } = await (await axios.delete(`${apiURL}user/${payload.userID}/order/${payload.orderID}`, {data : payload})).data
-   if(msg) {
-    context.dispatch('fetchOrders')
-   } else {
-    toast.error(`${err}`, {
-      autoClose: 3000
-    })
-   }
-  } catch(e) {
-  toast.error(`${e.message}`, {
-    autoClose: 3000
-  })
-  }
-}
+// async removeOrder(context, payload) {
+//   try{
+//    const { msg, err } = await (await axios.delete(`${apiURL}user/${payload.userID}/order/${payload.orderID}`, {data : payload})).data
+//    if(msg) {
+//     context.dispatch('fetchOrders')
+//    } else {
+//     toast.error(`${err}`, {
+//       autoClose: 3000
+//     })
+//    }
+//   } catch(e) {
+//   toast.error(`${e.message}`, {
+//     autoClose: 3000
+//   })
+//   }
+// }
   },
   modules: {
   }
