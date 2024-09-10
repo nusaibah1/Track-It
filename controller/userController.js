@@ -69,6 +69,14 @@ userRouter.delete('/:id/order', (req, res) => {
 userRouter.delete('/:id/order/:orderID', (req, res) => {
     orders.deleteOrder(req, res)
 })
+// Profit
+// userRouter.get('profit', (req, res) => {
+//     orders.fetchProfit(req, res)
+// })
+// Loss
+// userRouter('/loss', (req, res) =>{
+//     orders.fetchLoss(req, res)
+// })
 
 
 export {

@@ -38,12 +38,16 @@ app.use('/user', userRouter)
 app.use('/item', itemRouter)
 app.use('/supplier', supplierRouter)
 
-// Endpoint
-router.get('^/$|/TrackIt', (req, res) => {
-    res.status(200).sendFile(path.resolve('./static/html/index.html'))
-})
 
 
-app.listen(port, () => {
+
+
+
+
+  app.listen(port, () => {
     console.log(`Server is running on ${port}`)
 })
+
+
+
+  
