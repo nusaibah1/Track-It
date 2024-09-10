@@ -39,7 +39,18 @@ app.use('/item', itemRouter)
 app.use('/supplier', supplierRouter)
 
 
-
+app.get('/api/chart-data', (req, res) => {
+    res.json({
+      labels: ['January', 'February', 'March', 'April'],
+      datasets: [
+        {
+          label: 'Sample Data',
+          data: [30, 45, 75, 20],
+          backgroundColor: ['rgba(75, 192, 192, 0.6)'],
+        },
+      ],
+    });
+  });
 
 
 

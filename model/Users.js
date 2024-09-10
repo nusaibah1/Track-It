@@ -210,7 +210,7 @@ async login(req, res) {
                       {
                   
                       status: 401, 
-                      msg: 'Invalid email address. Please ensure that you provide the correct email address.'
+                      msg: err.message
                   }
               )
                } else {
