@@ -204,13 +204,13 @@ async login(req, res) {
         `
         
         db.query(strQry,  async(err, result) =>{
-          if(err) console.log(err)//throw new Error ('To login, please ensure that you provide the correct credentials.')
+          if(err) throw new Error ('To login, please ensure that you provide the correct credentials.')
               if(!result?.length) {
                   res.json(
                       {
                   
                       status: 401, 
-                      msg: err.message
+                      msg: 'Invalid email address. Please ensure that you provide the correct email address.'
                   }
               )
                } else {
@@ -243,6 +243,8 @@ async login(req, res) {
       }) 
         }
 }
+
+
 fetchReports(req, res) {
     try{
      const strQry = `
