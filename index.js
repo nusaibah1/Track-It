@@ -76,6 +76,9 @@ app.use('/supplier', supplierRouter);
 //   });
 
 
+app.get('^/$|/trackIt', (req, res) => {
+    res.status(200).sendFile(path.resolve('./static/html/index.html'))
+})
   app.listen(port, () => {
     console.log(`Server is running on ${port}`)
 })

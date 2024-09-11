@@ -8,6 +8,17 @@ import { authenticateToken } from '../middleware/userAuth.js'
 const itemRouter = express.Router()
 itemRouter.use(bodyParser.json())
 
+// Sales 
+
+itemRouter.get('/sales', (req, res) => {
+    products.fetchSales(req, res)
+})
+// Single Sale 
+
+itemRouter.get('/sale/:id', (req, res) => {
+    products.fetchSale(req, res)
+})
+
 // Retrieve all Items
 //
 itemRouter.get('/' ,(req, res) => {
