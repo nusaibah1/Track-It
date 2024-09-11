@@ -36,7 +36,11 @@ userRouter.delete('/:id' ,(req, res) => {
 userRouter.post('/login', (req, res) => {
     users.login(req, res)
 })
+// Sales 
 
+userRouter.get('/sales', (req, res) => {
+    users.fetchSales(req, res)
+})
 
 // =====Orders=======
 

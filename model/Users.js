@@ -7,7 +7,7 @@ class Users {
 fetchUsers(req, res) {
         try {
             const strQry = `
-            SELECT userName , userSurname, userEmailAdd, userRole, userUrl
+            SELECT userID, userName , userSurname, userEmailAdd, userRole, userUrl
             FROM Users;`
             db.query(strQry, (err, results) => {
                 if(err)  console.log(err)//throw new Error(`Unable to fetch all users`) 
@@ -243,6 +243,7 @@ async login(req, res) {
       }) 
         }
 }
+
 
 
 fetchProfit(req, res) {

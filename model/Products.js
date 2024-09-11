@@ -125,6 +125,46 @@ class Products {
             })
         }
     }
+    fetchSales(req, res) {
+        try{
+     const strQry = ` SELECT saleID,prodID,  quantitySold,  sellingPrice
+     FROM Sales;`
+    
+     db.query(strQry, (err, results) => {
+        if (err) console.log(err)
+            res.json({
+        status: res.statusCode, results
+    })
+     })
+        
+    }catch(e) {
+    res.json({
+        status: 404,
+        msg: e.message
+    })
+        }
+    }
+    fetchSale(req, res) {
+          
+        try {
+            const strQry = `
+           SELECT saleID,prodID,  quantitySold,  sellingPrice
+     FROM Sales
+            WHERE saleID = ${req.params.id};`
+            db.query(strQry, (err, result) => {
+                if (err) console.log(err)//throw new Error('Unable to retrieve sale')
+                res.json({
+                    status: res.statusCode,
+                    result: result[0]
+                })
+            })
+        } catch (e) {
+            res.json({
+                status: 404,
+                msg: e.message
+            })
+        }
+    }
 }
 
 export {
