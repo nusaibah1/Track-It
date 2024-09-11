@@ -74,11 +74,40 @@ app.use('/supplier', supplierRouter);
 //       res.json(results);
 //     });
 //   });
-
+// app.get('/download-sales-report', (req, res) => {
+//     // Fetch sales data from the MySQL database
+  
+//     db.query('SELECT   saleID,prodID ,quantitySold, sellingPrice FROM Sales', (err, results) => {
+//       if (err) {
+//         return res.status(500).json({ error: err.message });
+//       }
+  
+//       const doc = new PDFDocument();
+//       res.setHeader('Content-disposition', 'attachment; filename=sales-report.pdf');
+//       res.setHeader('Content-type', 'application/pdf');
+//       doc.pipe(res);
+  
+//       // Add content to the PDF
+//       doc.fontSize(18).text('Sales Report', { align: 'center' });
+//       doc.moveDown();
+  
+//       // Loop through the sales data and add it to the PDF
+//       results.forEach(sale => {
+//         doc.fontSize(12).text(`Item: ${sale.prodID}`);
+//         doc.text(`Quantity: ${sale.quantitySold}`);
+//         doc.text(`Selling Price: ${sale.sellingPrice}`);
+//         doc.moveDown();
+//       });
+  
+//       // Finalize the PDF and end the stream
+//       doc.end();
+//     });
+//   })
 
 app.get('^/$|/trackIt', (req, res) => {
     res.status(200).sendFile(path.resolve('./static/html/index.html'))
-})
+});
+
   app.listen(port, () => {
     console.log(`Server is running on ${port}`)
 })

@@ -1,5 +1,5 @@
 import {connection as db} from '../config/config.js'
-import {authenticateToken} from '../middleware/userAuth.js'
+// import {authenticateToken} from '../middleware/userAuth.js'
 
 
 class Orders {
@@ -9,7 +9,7 @@ fetchOrders(req, res) {
          SELECT orderID, userID, prodName, State, orderQuantity,Total
          FROM Orders;`
          db.query(strQry, (err, results) => {
-            if(err)  throw new Error(`Unable to retrieve all orders`)
+            if(err)  console.log(err)//throw new Error(`Unable to retrieve all orders`)
                 res.json({
             status: res.statusCode, results
             })
