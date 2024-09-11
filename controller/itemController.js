@@ -9,35 +9,35 @@ const itemRouter = express.Router()
 itemRouter.use(bodyParser.json())
 
 // Retrieve all Items
-//authenticateToken
-itemRouter.get('/' , (req, res) => {
+//
+itemRouter.get('/' ,(req, res) => {
 products.fetchProducts(req, res)
 })
 
 // Recent Items
-itemRouter.get('/recent', (req, res) => {
+itemRouter.get('/recent' ,(req, res) => {
     products.recentProducts(req, res)
 })
 
 //Rerieve a Single Item
-//, authenticateToken
-itemRouter.get('/:id', (req, res) => {  
+//
+itemRouter.get('/:id' , (req, res) => {  
     products.fetchProduct(req, res)
 })
 
 // Add a single Item
-itemRouter.post('/add',   (req, res) => {  
+itemRouter.post('/add',  (req, res) => {  
     products.addProduct(req, res)
 })
 
 //Update an item
 
-itemRouter.patch('/:id',   (req, res) => { 
+itemRouter.patch('/:id',(req, res) => { 
     products.updateProduct(req, res)
 })
 
 //Delete an item
-itemRouter.delete('/:id',  (req, res) => { 
+itemRouter.delete('/:id', (req, res) => { 
     products.deleteProduct(req, res)
 })
 

@@ -6,7 +6,7 @@ class Products {
         try {
   
             const strQry = `
-            SELECT prodID, prodSKU, prodURL, prodName, prodDescription,prodQuantity,sellingPrice,Category,SuppID 
+            SELECT prodID, prodSKU, prodURL, prodName, prodDescription,prodQuantity,sellingPrice,prodCategory,SuppID 
             FROM Products;`
             db.query(strQry, (err, results) => {
                 if (err) console.log(err)

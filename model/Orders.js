@@ -9,7 +9,7 @@ fetchOrders(req, res) {
          SELECT orderID, userID, prodName, State, orderQuantity,Total
          FROM Orders;`
          db.query(strQry, (err, results) => {
-            if(err) console.log(err)// throw new Error(`Unable to retrieve all orders`)
+            if(err)  throw new Error(`Unable to retrieve all orders`)
                 res.json({
             status: res.statusCode, results
             })
@@ -54,9 +54,7 @@ fetchOrder(req, res) {
      })
     }
 }
-
-
-    async addOrder(req, res) {
+async addOrder(req, res) {
       try {
         let data = req.body
         const strQry = `
@@ -77,7 +75,7 @@ fetchOrder(req, res) {
     }
 }
 
-      async updateOrder(req, res) {
+async updateOrder(req, res) {
        try{
         let data = req.body
 

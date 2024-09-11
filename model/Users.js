@@ -245,19 +245,56 @@ async login(req, res) {
 }
 
 
-fetchReports(req, res) {
+fetchProfit(req, res) {
     try{
      const strQry = `
+     SELECT 
+    P.prodName,
+    S.quantitySold,
+    (S.sellingPrice - Sup.suppCostPrice) AS profitPerUnit,
+    (S.sellingPrice - Sup.suppCostPrice) * S.quantitySold AS totalProfit
+    FROM Sales S
+    JOIN Products P ON S.prodID = P.prodID
+    JOIN Suppliers Sup ON P.SuppID = Sup.SuppID;
      `
+     db.query(strQry, (err, results) => {
+        if(err) throw new Error('Unable to retrieve the profits')
+            res.json({
+        status: res.statusCode,
+        results
+    })
+     })
     }catch(e) {
-        //
+        res.json({
+            status: 404,
+            msg: e.message
+        })
     }
 }
-fetchReport() {
+fetchLoss() {
     try{
-        const strQry =``
+        const strQry =`
+        SELECT 
+    P.prodName,
+    S.quantitySold,
+    (S.sellingPrice - Sup.suppCostPrice) AS lossPerUnit,
+    (S.sellingPrice - Sup.suppCostPrice) * S.quantitySold AS totalLoss
+    FROM Sales S
+    JOIN Products P ON S.prodID = P.prodID
+    JOIN Suppliers Sup ON P.SuppID = Sup.SuppID
+    WHERE (S.sellingPrice - Sup.suppCostPrice) < 0;`
+    db.query(strQry, (err, results) => {
+        if(err) throw new Error('Unable to retrieve the loss and expenses')
+            res.json({
+        status: res.statusCode,
+        results
+    })
+     })
     } catch(e) {
-        //
+        res.json({
+            status: 404,
+            msg: e.message
+        })
     }
 }
   

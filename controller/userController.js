@@ -10,11 +10,11 @@ userRouter.use(bodyParser.json())
 
 
 //Retrieve All Users 
-userRouter.get('/', (req, res) => {
+userRouter.get('/',(req, res) => {
     users.fetchUsers(req, res)
 })
 // Retrieve a single User
-userRouter.get('/:id', (req, res) => {
+userRouter.get('/:id',(req, res) => {
     users.fetchUser(req, res)
 })
 
@@ -28,7 +28,7 @@ userRouter.patch('/:id',(req, res) => {
 })
 
 // Delete a single User
-userRouter.delete('/:id',  (req, res) => {
+userRouter.delete('/:id' ,(req, res) => {
     users.deleteUser(req, res)
 })
 
@@ -41,7 +41,15 @@ userRouter.post('/login', (req, res) => {
 // =====Orders=======
 
 //Retrieve  All Orders 
-userRouter.get('/:id/orders', (req, res) => {
+// authenticateToken,
+// authenticateToken,
+// authenticateToken,
+// authenticateToken,
+// authenticateToken,
+// authenticateToken,
+// authenticateToken,
+// authenticateToken,
+userRouter.get('/:id/orders',(req, res) => {
     orders.fetchOrders(req, res)
 })
 
@@ -70,13 +78,13 @@ userRouter.delete('/:id/order/:orderID', (req, res) => {
     orders.deleteOrder(req, res)
 })
 // Profit
-// userRouter.get('profit', (req, res) => {
-//     orders.fetchProfit(req, res)
-// })
+userRouter.get('/profit', (req, res) => {
+    users.fetchProfit(req, res)
+})
 // Loss
-// userRouter('/loss', (req, res) =>{
-//     orders.fetchLoss(req, res)
-// })
+userRouter.get('/loss', (req, res) =>{
+    users.fetchLoss(req, res)
+})
 
 
 export {
