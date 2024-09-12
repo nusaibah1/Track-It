@@ -152,11 +152,9 @@ h1{
 h3,h1{
     color: bisque;
 }
-img{
-    size: 350px !important;
-}
+
 .container-fluid{
-    font-family: "Michroma", system-ui;
+    font-family: "Michroma", system-ui !important;
     display: inline-block;
     margin: 0 1.5%;
     width: 30%;

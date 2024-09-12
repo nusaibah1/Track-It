@@ -26,11 +26,6 @@
                               <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Orders</span></router-link>
                       </li>
                       <li>
-                        <router-link to="/items" class="nav-link px-0 align-middle ">
-                            <i class="fs-4 bi-shop"></i><span class="ms-1 d-none d-sm-inline">Items</span></router-link>
-                        
-                    </li>
-                      <li>
                           <router-link to="/users"  class="nav-link px-0 align-middle ">
                               <i class="fs-4 bi-people"></i><span class="ms-1 d-none d-sm-inline">Users</span></router-link>
                           
@@ -52,127 +47,36 @@
                           <span class="d-none d-sm-inline mx-1">Admin</span>
                       </a>
                       <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                      
-                       
-                          <li><router-link class="dropdown-item" to="/manageProfile">Profile</router-link></li>
+                          <li><a class="dropdown-item" href="#">New project...</a></li>
+                          <li><a class="dropdown-item" href="#">Settings</a></li>
+                          <li><a class="dropdown-item" href="#">Profile</a></li>
                           <li>
                               <hr class="dropdown-divider">
                           </li>
-                          <li><a class="dropdown-item" href="#" @click.prevent="signOut">Sign out</a></li>
+                          <li><a class="dropdown-item" href="#">Sign out</a></li>
                       </ul>
                   </div>
               </div>
           </div>
           <div class="col py-3">
-              
-              <button class="btn bg-secondary">Generate Report</button>
-              <div class="container-fluid">
-        <h3>Suppliers</h3>
-        
-        <table class="table table-bordered">
-          <thead>
-         
-                           <tr>
-                              <th>SupplierID</th>
-                              <th>Company</th>
-                              <th>Product</th>
-                              <th>Cost Price</th>
-                              <th>Agent</th>
-                              <th>Email Address</th>
-                              <th>Phone Number</th>
-                              
-                              
-                          </tr>
-                      </thead>
-                      <tbody v-if="suppliers">
-                       
-                          <tr v-for="supplier in suppliers" :key="supplier.SuppID">
-                              <td>{{ supplier.SuppID }}</td>
-                             
-                            
-                             <td>{{ supplier.suppCompany}}</td>
-                             <td>{{ supplier.suppProduct }}</td>
-                             <td>{{ supplier.suppCostPrice }}</td>
-                             <td>{{ supplier.suppAgent }}</td>
-                              <td>{{ supplier.suppemailAdd }}</td>
-                              <td>{{ supplier.suppPhoneNum}}</td>
-                              
-                          </tr> 
-                      </tbody>
-                      <tbody v-else>
-                          <Spinner />
-                      </tbody>
-                  </table>  
-    </div>
-          
-              
-         </div>
+
+          </div>
       </div>
-  </div>
+</div>
+    
 
-  </template>
-
+</template>
 
 <script>
 
-import Spinner from '@/components/Spinner.vue';
+    export default {
+name: 'SidebarComp'
+    
 
-export default {
-components: {
-    Spinner,
-    
-    
-    
-},
-data() {
-    return {
-        supplier: {
-          
-            SuppID: "",
-            suppCompany: "",
-            suppProduct: "",
-            suppCostPrice: "",
-            suppAgent: "",
-            suppemailAdd: ""    , 
-            suppPhoneNum: ""
-        },
-        methods: {
-            addSupplier() {
-             this.$store.dispatch('addSupplier', this.supplier)
-            },
-            updateSupplier() {
-                this.$store.dispatch('updateSupplier', this.supplier)
-            }, 
-            deleteSupplier(id) {
-                this.$store.dispatch('deleteSupplier', id)
-            },
-            signOut() {
-                this.$store.dispatch('signOut')
-                this.$router.push('/login')
-            }
-        },
-        computed: {
-            suppliers() {
-         return this.$store.state.suppliers
-            }
-        },
-        mounted() {
-            this.$store.dispatch('fetchSuppliers')
-            
-        },
-    }
 }
-}
-
-
 </script>
 
-<style>
-h3{
-    color: bisque;
-    text-align: center;
-}
-th{
-    color: grey !important;
-}
+<style scoped>
+
+
 </style>

@@ -82,8 +82,7 @@ label{
   gap: 0.5rem;
 }
 
-.form input[type="email"],
-.form input[type="password"] {
+.form input{
   border-radius: 0.5rem;
   padding: 1rem 0.75rem;
   width: 100%;
@@ -95,8 +94,7 @@ label{
   outline: 2px solid var(--bg-dark);
 }
 
-.form input[type="email"]:focus,
-.form input[type="password"]:focus {
+.form input:focus {
   outline: 2px solid var(--clr);
 }
 
@@ -132,7 +130,7 @@ label{
   color: var(--bg-dark);
 }
 
-.span a {
+.span router-link{
   color: var(--clr);
 }
 

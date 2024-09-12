@@ -1,7 +1,7 @@
 <template>
   <Navbar/>
   <div class="container">
-      <div class="row">
+       <div class="row">
           <h2 class="display-2">Register</h2>
       </div>
       <div class="row">
@@ -31,16 +31,11 @@
     <input class="form-control" type="password" placeholder="Password" v-model="payload.userPass"
     required />
  </span>
- <span class="span-input">
-    <labe for="userUrl">User Profile URL</labe>
-    <input class="form-control" type="url" placeholder="Profile link" v-model="payload.userUrl"
-    required />
 
- </span>
 
   <input class="submit" type="submit" value="Sign Up" />
-  <a href="/signUp"><span class="span">Already have an account? Sign In</span>
-  </a>
+  <router-link to="/login"><span class="span">Already have an account? Sign In</span>
+  </router-link>
 </form>
 </div>
  
