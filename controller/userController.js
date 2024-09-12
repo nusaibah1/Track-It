@@ -53,7 +53,7 @@ userRouter.get('/sales', (req, res) => {
 // authenticateToken,
 // authenticateToken,
 // authenticateToken,
-userRouter.get('/:userID/orders',(req, res) => {
+userRouter.get('/:id/orders',(req, res) => {
     orders.fetchOrders(req, res)
 })
 

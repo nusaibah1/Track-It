@@ -27,7 +27,7 @@ class Orders {
 fetchOrders(req, res) {
     try {
         // Extract userID from the route parameters (req.params)
-        const userID = req.params.userID;
+        const userID = req.params.userID
 
         // If no userID is provided, return an error response
         if (!userID) {
