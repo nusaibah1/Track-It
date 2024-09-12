@@ -106,12 +106,12 @@
                     <td>{{ item.SuppID }}</td>
                     <td>
                         <!-- <button @click="updateItem(item)" class="btn bg-black">Update</button> -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
  Edit
-</button>
+</button> -->
 
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -127,9 +127,69 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
-                        <button @click="deleteItem(item.prodID)" class="btn bg-danger">Delete</button>
+
+<button class="btn btn-secondary" data-bs-toggle="modal" :data-bs-target="`#editProductModal${item.itemID}`">
+                               Edit
+                            </button>
+                            <div class="modal fade" :id="`editProductModal${item.itemID}`" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Update Product</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form >
+                                            <div class="mb-3">
+                                   <label for="firstName" class="form-label">Product SKU</label>
+                                  <input type="text" class="form-control" id="prodName" v-model="item.prodSKU">
+                                  </div>
+                                  <div class="mb-3">
+                                   <label for="firstName" class="form-label">Product  URL</label>
+                                  <input type="text" class="form-control" id="prodName" v-model="item.prodURL">
+                                  </div>
+                                 <div class="mb-3">
+                                   <label for="firstName" class="form-label">Product Name</label>
+                                  <input type="text" class="form-control" id="prodName" v-model="item.prodName">
+                                  </div>
+                                  <div class="mb-3">
+                                    <label for="lastName" class="form-label">Product Description</label>
+                                    <input type="text" class="form-control" id="prodDescription" v-model="item.prodDescription">
+                                  </div>
+                                     <div class="mb-3">
+                                  <label for="lastName" class="form-label">Product Catergory</label>
+                                <input type="text" class="form-control" id="Category" v-model="item.prodCategory">
+                                 </div>
+                                 
+                                 
+                                    <!-- prodID, prodSKU, prodURL, prodName, prodDescription,prodQuantity, sellingPrice,prodCategory, SuppID  -->
+                                    <div class="mb-3">
+                                    <label for="lastName" class="form-label">Product Price</label>
+                                    <input type="text" class="form-control" id="amount" v-model="item.sellingPrice">
+                                 </div>
+                                    <div class="mb-3">
+                                   <label for="lastName" class="form-label">Product Quantity</label>
+                                   <input type="text" class="form-control" id="quantity" v-model="item.prodQuantity">
+                              </div>
+                                 
+                                 <div class="mb-3">
+                                    <button type="submit" class="btn btn-primary" @click.prevent="updateItem(JSON.stringify(item))">Save changes</button>
+                                 </div>
+                                </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                            <button @click="deleteItem(item.prodID)" class="btn ">
+                                Delete
+                            </button>
+
+                        <!-- <button @click="deleteItem(item.prodID)" class="btn bg-danger">Delete</button> -->
                     </td>
                 </tr>
             </tbody>
@@ -175,6 +235,7 @@ export default {
         return {
           
             itemPayload: {
+             
                 prodID: '',
                 prodName: '',
                 prodDescription: '',

@@ -84,11 +84,11 @@
 </svg>{{ sale.quantitySold }}</template>
                             <template #cardBody>
                               <router-link :to="{ name: 'itemDetails', params: { id: sale.prodID } }">
-  <p>Product ID: {{ sale.prodID }}</p>
+ <button>Details</button>
 </router-link>
 
-
-                                <p>Quantity Sold: {{ sale.quantitySold }}</p>
+<p>Product ID: {{ sale.prodID }}</p>
+                               
                                 <p>Selling Price: {{ sale.sellingPrice }}</p>
                             </template>
                         </CardComp>

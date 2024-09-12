@@ -113,12 +113,63 @@
                   <td>{{ user.userRole }}</td>
                   <td>{{ user.userEmailAdd }}</td>
                   <td>
+                    <button @click="updateUser(user.userID)" class="btn " data-bs-toggle="modal" :data-bs-target="`#editUserModal${user.userID}`">
+                                <p class="fa-solid fa-user-pen"></p> Edit
+                            </button>
+                            <!-- Edit User Modal -->
+                            <div class="modal fade" :id="`editUserModal${user.userID}`" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit User</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                 <div class="mb-3">
+                                   <label for="firstName" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="firstName" v-model="user.userName">
+                                 </div>
+                                <div class="mb-3">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="lastName" v-model="user.userSurname">
+                                  </div>
+                                  <div class="mb-3">
+                                    <label for="userPass" class="form-label">Password</label>
+                                   <input type="password" class="form-control" id="userPass" v-model="user.userPass">
+                                  </div>
+                               
+                                
+                              <div class="mb-3">
+                            <label for="userRole" class="form-label">Role</label>
+                                   <select class="form-select" id="userRole" v-model="user.userRole">
+                                      <option value="Admin">Admin</option>
+                                     <option value="User">User</option>
+                                   </select>
+                                  </div>
+                                 <div class="mb-3">
+                                    <label for="emailAdd" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="emailAdd" v-model="user.userEmailAdd">
+                                  </div>
+                                  <div class="mb-3">
+                                    <label for="userProfile" class="form-label">Profile</label>
+                                    <input type="img" class="form-control" id="userProfile" v-model="user.userUrl">
+                                  </div>
+                            </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary" @click="updateUser()">Save changes</button>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                       Edit
-                    </button>
+                    </button> -->
                     <!-- Modal -->
-                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                       <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="modal-header">
@@ -134,7 +185,7 @@
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                     <button @click="deleteUser(user.userID)" class="btn">
                       <p class="fa-solid fa-user-minus"></p> Delete
                     </button>
