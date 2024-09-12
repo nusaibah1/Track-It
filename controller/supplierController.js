@@ -7,32 +7,32 @@ const supplierRouter = express.Router()
 supplierRouter.use(bodyParser.json())
 
 // Retrieve all Suppliers from the database
-supplierRouter.get('/',(req, res) => {
+supplierRouter.get('/', authenticateToken,(req, res) => {
     suppliers.fetchSuppliers(req, res)
 })
 
 // Retrieve  3 newest suppliers
-supplierRouter.get('/new',(req, res) => {
+supplierRouter.get('/new',authenticateToken,(req, res) => {
     suppliers.newSuppliers(req, res)
 })
 
 // Retrieve a Single supplier
-supplierRouter.get('/:id',(req, res) => {
+supplierRouter.get('/:id',authenticateToken,(req, res) => {
     suppliers.fetchSupplier(req, res)
 })
 
 // Add Supplier
-supplierRouter.post('/add' ,(req, res) => {
+supplierRouter.post('/add',authenticateToken,(req, res) => {
     suppliers.addSupplier(req, res)
 })
 
 // Update a  Supplier's  Records
-supplierRouter.patch('/update/:id', (req, res) => {
+supplierRouter.patch('/update/:id', authenticateToken,(req, res) => {
     suppliers.updateSupplier(req,res)
 })
 
 //  Delete a Suppliers Records
-supplierRouter.delete('/:id',(req, res) => {
+supplierRouter.delete('/:id', authenticateToken,(req, res) => {
     suppliers.removeSupplier(req, res)
 })
 
