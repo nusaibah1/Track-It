@@ -13,7 +13,7 @@
                           </router-link>
                       </li>
                       <li>
-                          <router-link to="/report" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                          <router-link to="/report" class="nav-link px-0 align-middle">
                               <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Report</span> </router-link>
                           <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                             
@@ -24,8 +24,14 @@
                           <router-link to="/orders" class="nav-link px-0 align-middle">
                               <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Orders</span></router-link>
                       </li>
+                      
+          <li>
+                          <router-link to="/items" class="nav-link px-0 align-middle ">
+                              <i class="fs-4 bi-shop"></i><span class="ms-1 d-none d-sm-inline">Items</span></router-link>
+                          
+                      </li>
                       <li>
-                          <router-link to="/users"  class="nav-link px-0 align-middle ">
+                          <router-link to="/users" class="nav-link px-0 align-middle ">
                               <i class="fs-4 bi-people"></i><span class="ms-1 d-none d-sm-inline">Users</span></router-link>
                           
                       </li>
@@ -57,200 +63,166 @@
                   </div>
               </div>
           </div>
-          <div class="col py-3">
-              
-              <button class="btn bg-secondary">Generate Report</button>
-       
-              <div class="container-fluid">
-        <div class="row display-2">
-            <h2>Users</h2></div>
-        <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>UserID</th>
-                        <th>User Profile</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        
-                        <th>Role</th>
-                        <th>Email</th>
-                        <th>Edit/Delete</th>
-                    </tr>
-                </thead>
-                
-                <!-- userID int AI PK 
-userName varchar(100) 
-userSurname varchar(100) 
-userRole varchar(6) 
-userEmailAdd varchar(130) 
-userPass text 
-userUrl text -->
-                <tbody v-if="users">
-                    <tr v-for="user in users" :key="user.userID">
-                        <td>{{ user.userID }}</td>
-                        <td><img :src="user.userUrl" :alt="user.userName" class="img-thumbnail"></td>
-                        <td>{{ user.userName }}</td>
-                        <td>{{ user.userSurname  }}</td>
-                        <td>{{ user.userRole }}</td>
-                        <td>{{ user.userEmailAdd }}</td>
-                        <td>
-                            <button @click="editUser(user.userID)" class="btn " data-bs-toggle="modal" :data-bs-target="`#editUserModal${user.userID}`">
-                                <p class="fa-solid fa-user-pen"></p> Edit
-                            </button>
-                            <!-- Edit User Modal -->
-                            <div class="modal fade" :id="`editUserModal${user.userID}`" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit User</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form>
-                                 <div class="mb-3">
-                                   <label for="firstName" class="form-label">First Name</label>
-                                    <input type="text" class="form-control" id="firstName" v-model="user.firstName">
-                                 </div>
-                                <div class="mb-3">
-                                <label for="lastName" class="form-label">Last Name</label>
-                                    <input type="text" class="form-control" id="lastName" v-model="user.lastName">
-                                  </div>
-                                  <div class="mb-3">
-                                    <label for="userPass" class="form-label">Password</label>
-                                   <input type="password" class="form-control" id="userPass" v-model="user.userPass">
-                                  </div>
-                                  <div class="mb-3">
-                                   <label for="userAge" class="form-label">Age</label>
-                                   <input type="number" class="form-control" id="userAge" v-model="user.userAge">
-                                 </div>
-                                 <div class="mb-3">
-                                  <label for="userGender" class="form-label">Gender</label>
-                                   <select class="form-select" id="userGender" v-model="user.Gender">
-                                   <option value="Male">Male</option>
-                                     <option value="Female">Female</option>
-                               </select>
-                                 </div>
-                              <div class="mb-3">
-                            <label for="userRole" class="form-label">Role</label>
-                                   <select class="form-select" id="userRole" v-model="user.userRole">
-                                      <option value="Admin">Admin</option>
-                                     <option value="User">User</option>
-                                   </select>
-                                  </div>
-                                 <div class="mb-3">
-                                    <label for="emailAdd" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="emailAdd" v-model="user.emailAdd">
-                                  </div>
-                                  <div class="mb-3">
-                                    <label for="userProfile" class="form-label">Profile</label>
-                                    <input type="img" class="form-control" id="userProfile" v-model="user.userProfile">
-                                  </div>
-                            </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary" @click="updateUser()">Save changes</button>
-                                    </div>
-                                    </div>
-                                </div>
-                                </div>
-                            <button @click="deleteUser(user.userID)" class="btn ">
-                                <p class="fa-solid fa-user-minus"></p> Delete
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-                <tbody v-else>
-                    <Spinner />
-                </tbody>
-            </table> 
-    </div>
-              
-         </div>
+        <div class="col py-3">
+          <button class="btn bg-secondary">Generate Report</button>
+          <button class="btn bg-black" @click="addUser()">Add User</button>
+          
+          <div class="container-fluid">
+            <div class="row display-2">
+              <h2>Users</h2>
+            </div>
+  
+            <!-- Search and Sort Controls -->
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <input
+                  type="text"
+                  v-model="searchQuery"
+                  class="form-control"
+                  placeholder="Search users..."
+                />
+              </div>
+              <div class="col-md-6">
+                <select v-model="sortOrder" class="form-select">
+                  <option value="asc">Sort Alphabetically Ascending</option>
+                  <option value="desc">Sort Alphabetically Descending</option>
+                </select>
+              </div>
+            </div>
+  
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>UserID</th>
+                  <th>User Profile</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Role</th>
+                  <th>Email</th>
+                  <th>Edit/Delete</th>
+                </tr>
+              </thead>
+              <tbody v-if="filteredAndSortedUsers.length">
+                <tr v-for="user in filteredAndSortedUsers" :key="user.userID">
+                  <td>{{ user.userID }}</td>
+                  <td>
+                    <img :src="user.userUrl" :alt="user.userName" class="img-thumbnail img-fluid" />
+                  </td>
+                  <td>{{ user.userName }}</td>
+                  <td>{{ user.userSurname }}</td>
+                  <td>{{ user.userRole }}</td>
+                  <td>{{ user.userEmailAdd }}</td>
+                  <td>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                      Edit
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            ...
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Understood</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <button @click="deleteUser(user.userID)" class="btn">
+                      <p class="fa-solid fa-user-minus"></p> Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+              <tbody v-else>
+                <Spinner />
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-  </div>
-  <!-- <Footer/> -->
+    </div>
   </template>
-
 
 <script>
 import Spinner from '@/components/Spinner.vue';
-export default {
-    components: {
-        Spinner
-    },
-    data() {
-        return {
-         
-            user: {
-                /* 
-                userID int AI PK 
-userName varchar(100) 
-userSurname varchar(100) 
-userRole varchar(6) 
-userEmailAdd varchar(130) 
-userPass text 
-userUrl text*/
-                userID: null,
-                userName: "",
-                userSurname: "",
-                userPass: "",
-                userRole: "",
-                userEmailAdd: "",
-                userUrl: "",
-            }
-        }
-    },
-    methods: {
-     editUser(id) {
-            this.users.forEach((user) => {
-                if (user.userID == +id) {
-                    this.firstName = user.firstName
-                    this.lastName = user.lastName
-                    this.userAge = user.userAge
-                    this.gender = user.Gender
-                    this.userRole = user.userRole
-                    this.emailAdd = user.emailAdd
-                    this.userProfile = user.userProfile
-                    this.userPayload = {
-                        userID: user.userID,
-                        firstName: this.firstName,
-                        lastName: this.lastName,
-                        userAge: this.userAge,
-                        gender: this.Gender,
-                        userRole: this.userRole,
-                        emailAdd: this.emailAdd,
-                        userProfile: this.userProfile
-                    }
-                }
-            })
-        },
-        updateUser() {
-    this.$store.dispatch('updateUser', this.users)
-  },
-        deleteUser(id){
-            this.$store.dispatch('deleteUser', id);
-        },
-        addUser() {
-  this.$store.dispatch('register', this.user);
-},
-    },
-    computed: {
-    
-        users() {
-            return this.$store.state.users
-        }
-    },
-    mounted() {
 
-        this.$store.dispatch('fetchUsers')
+export default {
+  components: {
+    Spinner
+  },
+  data() {
+    return {
+      searchQuery: '',
+      sortOrder: 'asc',
+      user: {
+        userID: null,
+        userName: "",
+        userSurname: "",
+        userPass: "",
+        userRole: "",
+        userEmailAdd: "",
+        userUrl: "",
+      }
     }
+  },
+  methods: {
+    updateUser() {
+      this.$store.dispatch('updateUser', this.users)
+    },
+    deleteUser(id) {
+      this.$store.dispatch('deleteUser', id);
+    },
+    addUser() {
+      this.$store.dispatch('register', this.user);
+    }
+  },
+  computed: {
+    users() {
+      return this.$store.state.users || [];  // Ensure users is an array
+    },
+    filteredAndSortedUsers() {
+      const filtered = this.users.filter(user =>
+        user.userName.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+        user.userSurname.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+        user.userEmailAdd.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+
+      return filtered.sort((a, b) => {
+        const comparison = a.userName.localeCompare(b.userName);
+        return this.sortOrder === 'asc' ? comparison : -comparison;
+      });
+    }
+  },
+  mounted() {
+    this.$store.dispatch('fetchUsers')
+  }
 }
 </script>
 
+
 <style scoped>
+input{
+    border: solid black;
+}
 h2{
     text-align: center;
     font-family: "Michroma", sans-serif;
+}
+.btn{
+    border: 1px black;
+}
+th{
+    font-family: "Michroma", "sans-serif";
+}
+img{
+ height: 60px
 }
 </style>

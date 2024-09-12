@@ -1,15 +1,15 @@
 <template>
-    <div></div>
+   
     
 
-    <!-- <footer class="container-fluid">
+    <footer class="container-fluid">
         <div class="row">
             <footer class="t">Track It &copy; <span>
-                {{ currentYear }} 
+                {{ currentYear }}
                 </span>
          </footer>
         </div>
-    </footer> -->
+    </footer>
 </template>
 
 <script>
@@ -37,7 +37,7 @@ data() {
     background-color: black;
     font-family: "Michroma", system-ui;
     text-align: center;
-    position: absolute;
-    bottom: 0;
+    color: bisque;
+   
 }
 </style>

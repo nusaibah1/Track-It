@@ -24,6 +24,7 @@ const routes = [
     path: '/login',
     name: 'login',
     component: () => import('@/views/LogInView.vue')
+    
   },
 
  
@@ -38,11 +39,13 @@ const routes = [
     component: () => import('@/views/OrdersView.vue')
 
   },
+
   {
-  path: '/users',
-  name: '/users',
+    path: '/users',
+    name: 'users',
   component: () => import('@/views/UsersView.vue')
   },
+
 
   {
     path: '/suppliers',
@@ -54,7 +57,11 @@ path: '/items',
 name: 'items',
 component: () => import('@/views/ItemView.vue')
   },
- 
+ {
+  path: '/itemDetails/:id',
+  name: 'itemDetails',
+  component: () => import('@/views/SingleItemView.vue')
+ },
   {
     path: '/about',
     name: 'about',

@@ -1,7 +1,8 @@
 <template>
+    <Navbar/>
     <div class="container">
         <div class="row">
-            <h2 class="display-2">Item Details</h2>
+            <h3>Item Details</h3>
         </div>
        <div class="row justify-content-center" v-if="item">
             <Card  class="card-column card-margin">
@@ -9,12 +10,18 @@
                     <img :src="item.prodURL" loading="lazy" class="img-fluid" :alt="item.prodName">
                 </template>
                 <template #cardBody>
+                    <h3>Product:</h3>
                     <h5 class="card-title bold">{{ item.prodName }}</h5>
-                    <p class="words">
-                        {{ item.prodDescription }}
-                    </p>
+                    <p class="words">{{ item.prodDescription }} </p>
+                  <p class="words"><span class="text-success fw-bold">Item SKU:</span>
+                    <br>
                     <small>{{ item.prodSKU }}</small>
-                    <small>{{ item.prodQuantity }}</small>
+                  </p>
+                  <p class="words"><span class="text-success fw-bold">Stock Quantity:</span>
+                        <br>
+                        <small>{{ item.prodQuantity }}</small>
+                </p>
+                   
                     <p class="words"><span class="text-success fw-bold">Selling Price</span>: R{{ item.sellingPrice }}</p>
                 </template>
             </Card>
@@ -25,7 +32,7 @@
     </div>
 </template>
 <script setup>
-
+import Navbar from '@/components/Navbar.vue'
 import { useStore } from 'vuex'
 import { computed, onMounted } from 'vue'
 import Card from '@/components/Card.vue'
@@ -45,7 +52,7 @@ onMounted(() => {
 .card-column {
     margin: 20px;
     padding: 20px;
-    border:  solid bisque;
+    border:  solid black;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-top: 5%;
@@ -66,13 +73,13 @@ onMounted(() => {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
-    color: bisque;
+    color: black;
 }
 
 .words {
     font-size: 16px;
     margin-bottom: 20px;
-    font-weight: bold;
+    color: gray;
 }
 
 .text-success {
@@ -80,6 +87,13 @@ onMounted(() => {
 }
 
 .bold {
+    font-weight: bold;
+}
+h3,p, small, h5{
+    font-family: "Michroma", "sans-serif";
+}
+h3{
+    text-align: center;
     font-weight: bold;
 }
 </style>

@@ -14,7 +14,7 @@
                         </router-link>
                     </li>
                     <li>
-                        <router-link to="/report" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                        <router-link to="/report"  class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Report</span> </router-link>
                         <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                           
@@ -24,6 +24,11 @@
                     <li>
                         <router-link to="/orders" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Orders</span></router-link>
+                    </li>
+                    <li>
+                        <router-link to="/items" class="nav-link px-0 align-middle ">
+                            <i class="fs-4 bi-shop"></i><span class="ms-1 d-none d-sm-inline">Items</span></router-link>
+                        
                     </li>
                     <li>
                         <router-link to="/users"  class="nav-link px-0 align-middle ">
@@ -59,22 +64,8 @@
             </div>
         </div>
         <div class="col py-3">
-            
             <button class="btn bg-secondary">Generate Report</button>
-     
-           <Spinner/>
-            
-       </div>
-    </div>
-</div>
-<!-- <Footer/> -->
-</template>
-
-
-
-<!-- <template>
-    <div class="container-fluid">
-        <h3>Orders</h3>
+            <h3>Orders</h3>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -104,20 +95,35 @@
                     <Spinner />
                 </tbody>
             </table>
+        
+     
+       
+            
+       </div>
+    </div>
+</div>
+<!-- <Footer/> -->
+</template>
+
+
+
+ <!-- <template>
+    <div class="container-fluid">
+
           
     </div>
     <Footer/>
-</template>
+</template> -->
 
 <script>
 import Spinner from '@/components/Spinner.vue';
-import Footer from '@/components/Footer.vue';
+// import Footer from '@/components/Footer.vue';
 // import Card from '../components/Card.vue';
 
 export default {
   components: {
     Spinner,
-    Footer
+    // Footer
     // Card
   },
   data() {
@@ -141,7 +147,7 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch('fetchOrders'); 
+    this.fetchUserOrders(); 
   },
   methods: {
   fetchUserOrders() {
@@ -155,4 +161,14 @@ export default {
 }
 }
 
-</script> -->
+</script> 
+
+<style scoped>
+h3{
+    text-align: center;
+}
+
+h3, th, td{
+font-family: "Michroma", "sans-serif";
+}
+</style>

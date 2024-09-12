@@ -26,7 +26,16 @@
 }
 
 .card-header{
-    background: #fff;
+    background-color: black;
+    color: bisque;
 }
+.card-body{
+    background-color: white;
+    font-weight: bold;
+    color: bisque;
+}
+
+
+ 
 
 </style>
