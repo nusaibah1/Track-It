@@ -39,7 +39,7 @@ fetchOrders(req, res) {
 
         // SQL query to fetch orders for the specified userID
         const strQry = `
-        SELECT orderID, userID, prodName, State, orderQuantity, Total
+        SELECT orderID, userID, prodID, State, orderQuantity, Total
         FROM Orders
         WHERE userID = ?;`;
 
