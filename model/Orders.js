@@ -3,69 +3,27 @@ import {connection as db} from '../config/config.js'
 
 
 class Orders {
-    
-// fetchOrders(req, res) {
-//         try{
-//          const strQry = `
-//          SELECT orderID, userID, prodName, State, orderQuantity,Total
-//          FROM Orders
-//         WHERE userID = ?;`
-//          db.query(strQry, (err, results) => {
-//             if(err)  console.log(err)//throw new Error(`Unable to retrieve all orders`)
-//                 res.json({
-//             status: res.statusCode, results
-//             })
-//          })
-//         }catch(e) {
-//    res.json({
-//     status: 404,
-//     msg: e.message
-//    })
-//         }
-//     }
-
 fetchOrders(req, res) {
-    try {
-        // Extract userID from the route parameters (req.params)
-        const userID = req.params.userID
-
-        // If no userID is provided, return an error response
-        if (!userID) {
-            return res.status(400).json({
-                status: 400,
-                msg: "userID is missing"
-            });
+        try{
+         const strQry = `
+         select o.orderID, o.userID, p.prodName, o.State, o.orderQuantity, o.Total
+            from Orders o 
+            join Products p on o.prodID
+            join Users u on o.userID = u.userID
+            where o.userID = ${req.params.id};`
+         db.query(strQry, (err, results) => {
+            if(err)  console.log(err)//throw new Error(`Unable to retrieve all orders`)
+                res.json({
+            status: res.statusCode, results
+            })
+         })
+        }catch(e) {
+   res.json({
+    status: 404,
+    msg: e.message
+   })
         }
-
-        // SQL query to fetch orders for the specified userID
-        const strQry = `
-        SELECT orderID, userID, prodID, State, orderQuantity, Total
-        FROM Orders
-        WHERE userID = ?;`;
-
-        // Execute the query and pass userID as a parameter
-        db.query(strQry, [userID], (err, results) => {
-            if (err) {
-                console.error(err);
-                return res.status(500).json({
-                    status: 500,
-                    msg: "Unable to retrieve all orders"
-                });
-            }
-
-            // Send the results if no error occurs
-            res.json({
-                status: res.statusCode,
-                results
-            });
-        });
-    } catch (e) {
-        res.status(404).json({
-            status: 404,
-            msg: e.message
-        });
     }
-}
 
 fetchOrder(req, res) {
     try{
