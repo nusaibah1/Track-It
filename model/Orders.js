@@ -7,7 +7,8 @@ fetchOrders(req, res) {
         try{
          const strQry = `
          SELECT orderID, userID, prodName, State, orderQuantity,Total
-         FROM Orders;`
+        FROM Orders
+        WHERE userID = ?;`
          db.query(strQry, (err, results) => {
             if(err)  console.log(err)//throw new Error(`Unable to retrieve all orders`)
                 res.json({
