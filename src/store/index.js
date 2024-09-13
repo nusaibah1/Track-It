@@ -586,44 +586,44 @@ async fetchSale(context, id) {
   }
 },
 // Fetch Profit
-// async fetchProfit(context, id) {
-// try{
-//  const {result, msg} = await(await axios.get(`${apiURL}sales/${id}/profit`)).data
-//  if(result) {
-//   context.commit('setProfit', result)
-//  }else{
-//   toast.error(`${msg}`, {
-//     autoClose: 3000
-//   })
-//  }
-// }catch(e) {
-//   toast.error(`${e.message}`, {
-//     autoClose: 3000
+async fetchProfit(context, payload) {
+try{
+ const {result, msg} = await(await axios.get(`${apiURL}sales/${payload.saleID}/profit` ,payload)).data
+ if(result) {
+  context.commit('setProfit', result)
+ }else{
+  toast.error(`${msg}`, {
+    autoClose: 3000
+  })
+ }
+}catch(e) {
+  toast.error(`${e.message}`, {
+    autoClose: 3000
    
-//   })
-// }
-// },
+  })
+}
+},
 
 // Fetch Loss 
-// async fetchLoss(context, id) {
-//   try{
-//     const {result, msg} = await(await axios.get(`${apiURL}sales/${id}/loss`)).data
-//     if(result) {
-//       context.commit('setLoss' ,result)
-//     }else{
-//       toast.error(`${msg}`, {
-//         autoClose: 3000
-//       })
-//     }
-//   } catch(e) {
-//     toast.error(`${e.message}` ,{
-//       autoClose: 3000
-//     })
-//   }
-// }
-async fetchTotal(context, id) {
+async fetchLoss(context, payload) {
   try{
-    const { result, msg } = await (await axios.get(`${apiURL}item/totals/${id}`)).data
+    const {result, msg} = await(await axios.get(`${apiURL}sales/${payload.saleID}/loss`)).data
+    if(result) {
+      context.commit('setLoss' ,result)
+    }else{
+      toast.error(`${msg}`, {
+        autoClose: 3000
+      })
+    }
+  } catch(e) {
+    toast.error(`${e.message}` ,{
+      autoClose: 3000
+    })
+  }
+},
+async fetchTotal(context, payload) {
+  try{
+    const { result, msg } = await (await axios.get(`${apiURL}item/totals/${payload.id}`, payload)).data
      if(result) {
        context.commit('setItem', result)
      } else {

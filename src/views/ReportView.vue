@@ -235,9 +235,9 @@ export default {
   mounted() {
     this.renderTasks();
     this.$store.dispatch('fetchSales')
-    // this.$store.dispatch('fetchTotal')
-    // this.$store.dispatch('fetchProfit')
-    // this.$store.dispatch('fetchLoss')
+    this.$store.dispatch('fetchTotal')
+    this.$store.dispatch('fetchProfit')
+    this.$store.dispatch('fetchLoss')
  
   }
 }

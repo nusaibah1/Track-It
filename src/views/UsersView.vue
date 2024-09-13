@@ -94,9 +94,9 @@
               <tbody v-if="filteredAndSortedUsers.length">
                 <tr v-for="user in filteredAndSortedUsers" :key="user.userID">
                   <td>{{ user.userID }}</td>
-                  <td> <router-link :to="{ name: 'userProfile', params: { id: user.userID } }">
+                  <!-- <td> <router-link :to="{ name: 'userProfile', params: { id: user.userID } }">
  <button>Details</button>
-</router-link></td>
+</router-link></td> -->
                   <td>
                     <img :src="user.userUrl" :alt="user.userName" class="img-thumbnail img-fluid" />
                   </td>

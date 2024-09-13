@@ -62,9 +62,9 @@ label{
 /* From Uiverse.io by bociKond */ 
 .form {
   --bg-light: #efefef;
-  --bg-dark: #707070;
+  --bg-dark: black;
   --clr: black;
-  --clr-alpha: #9c9c9c60;
+  --clr-alpha: cornsilk;
   display: flex;
   flex-direction: column;
   align-items: center;

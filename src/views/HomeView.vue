@@ -3,13 +3,12 @@
   <div class="container-fluid">
     <h1>Welcome to TrackIt</h1>
     <p class="lead">A tactful inventory management tool dedicated to making your life simpler.</p>
-    <p class="lead">Welcome to Track It, an Inventory System dedicated to ensuring effortless management! Here, you can effortlessly track and manage your inventory, streamline your operations, and make informed decisions to optimize stock levels. Let us help you simplify your inventory management and enhance your productivity. 
+    <p class="lead">Track It is an Inventory System dedicated to ensuring effortless management! Here, you can effortlessly track and manage your inventory, streamline your operations, and make informed decisions to optimize stock levels. Let us help you simplify your inventory management and enhance your productivity. 
       Enjoy seamless organization and efficient control at your fingertips</p>
  
- <router-link to="signUp"><button>Get Started</button></router-link>
- <router-link to="logIn"><button>Log In</button></router-link>
-      <!-- <LoginView/> -->
-    <!-- <SignUp/> -->
+ <router-link to="signUp"><button class="btn mx-auto d-flex justify-content-center">Get Started</button></router-link>
+ <router-link to="logIn"><button class="btn mx-auto d-flex justify-content-center">Log In</button></router-link>
+      
   </div>
 
 </template>
@@ -48,11 +47,23 @@ h1,h2, h5,p{
     text-align: center;
     font-family: "Michroma", sans-serif; 
 }
-button{
-  text-align: center;
-  border-radius: 5px;
-  font-weight: bold;
+
+ router-link{
+  text-decoration: none;
+ }
+
+button {
+ 
+  width: 200px;
+  height: 50px;
+  display: inline-block;
   background-color: black;
   color: bisque;
+  margin: 0.2%;
+  font-weight: bold;
+  text-decoration: none;
+}
+button:hover{
+  background-color: bisque;
 }
 </style>

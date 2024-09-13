@@ -1,5 +1,5 @@
 <template>
-    <Navbar/>
+  <router-link to="/report"><button><i class="bi bi-arrow-left-circle-fill"></i></button></router-link>
     <div class="container">
         <div class="row">
             <h3>Item Details</h3>
@@ -32,7 +32,7 @@
     </div>
 </template>
 <script setup>
-import Navbar from '@/components/Navbar.vue'
+
 import { useStore } from 'vuex'
 import { computed, onMounted } from 'vue'
 import Card from '@/components/Card.vue'
@@ -95,5 +95,7 @@ h3,p, small, h5{
 h3{
     text-align: center;
     font-weight: bold;
+    color: bisque;
 }
+
 </style>
