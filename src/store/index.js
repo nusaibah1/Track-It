@@ -9,8 +9,8 @@ import { useCookies } from 'vue3-cookies'
 const {cookies} = useCookies()
 
 
-// const apiURL = 'https://track-it-unw3.onrender.com/'
-const apiURL =  'http://localhost:3001/'
+const apiURL = 'https://track-it-unw3.onrender.com/'
+// const apiURL =  'http://localhost:3001/'
 useToken(cookies.get('LegitUser')?.token)
 export default createStore({
   state: {
