@@ -40,13 +40,22 @@ const routes = [
 
   },
 
+
   {
     path: '/users',
     name: 'users',
   component: () => import('@/views/UsersView.vue')
   },
-
-
+  {
+    path: '/orderView',
+    name: 'orderView',
+    component: () => import('@/views/OrderView.vue')
+  },
+  {
+    path: '/userProfile',
+    name: 'userProfile',
+    component: () => import('@/views/ManageUserProfileView.vue')
+  },
   {
     path: '/suppliers',
     name: 'suppliers',

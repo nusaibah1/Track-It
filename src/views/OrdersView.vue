@@ -65,6 +65,9 @@
         </div>
         <div class="col py-3">
             <button class="btn bg-secondary">Generate Report</button>
+            <router-link :to="{ name: 'orderView', params: { id: order.orderID } }">
+ <button>Order Details</button>
+</router-link>
             <h3>Orders</h3>
             <table class="table table-bordered">
                 <thead>
@@ -82,7 +85,8 @@
                 <tbody v-if="orders">
                     <tr v-for="order in orders" :key="order.orderID">
                         <td>{{ order.orderID }}</td>
-                        <td><img :src="payload.prodURL" :alt="payload.prodName" class="img-thumbnail"></td>
+
+                        <td></td>
                         <td>{{ payload.userID }}</td>
                          <td>{{ order.prodName }}</td>
                         <td>{{ order.State}}</td>
@@ -102,38 +106,23 @@
        </div>
     </div>
 </div>
-<!-- <Footer/> -->
+
 </template>
-
-
-
- <!-- <template>
-    <div class="container-fluid">
-
-          
-    </div>
-    <Footer/>
-</template> -->
 
 <script>
 import Spinner from '@/components/Spinner.vue';
-// import Footer from '@/components/Footer.vue';
-// import Card from '../components/Card.vue';
+
 
 export default {
   components: {
     Spinner,
-    // Footer
-    // Card
+  
   },
-  data() {
+  data() {  
     return {
-        payload: {
-            userID: '',
-        },
-      order: {
+       order: {
         orderID: '',
-       
+        userID: '',
         prodName: '',
         State: '',
         orderQuantity: '',
@@ -147,19 +136,13 @@ export default {
     }
   },
   mounted() {
-    this.fetchUserOrders(); 
-  },
-  methods: {
-  fetchUserOrders() {
-    const userID = this.$store.state.user?.userID; // Get userID from the store
-    if (userID) {
-      this.$store.dispatch('fetchOrders', { userID }); // Pass the userID as payload
-    } else {
-      console.error('userID is undefined');
-    }
-  }
+  
+  this.$store.dispatch('fetchOrders');
+},
+    
+  
 }
-}
+
 
 </script> 
 

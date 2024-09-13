@@ -17,11 +17,7 @@
     <input class="form-control" type="text" placeholder="last name" v-model="payload.userSurname"
     required />
 </span>
- <span class="input-span">
-  <label for="userRole" class="label"></label>
-  <input class="form-control" type="text" placeholder="Employee Role" v-model="payload.userRole" required />
- </span>
- <span class="input-span">
+<span class="input-span">
     <label for="userEmailAdd" class="label">Email Address:</label>
     <input class="form-control" type="email" placeholder="Email address" v-model="payload.userEmailAdd"
     required />
@@ -69,6 +65,7 @@ function register() {
 <style scoped>
 h2{
   text-align: center;
+  color: bisque;
 
 }
 input, h5, h2, button{
@@ -95,17 +92,19 @@ button{
 h3{
   text-align: center;
   font-family: "Michroma", sans-serif; 
+  margin: 30%;
 }
 
 label{
   font-family: "Michroma", sans-serif; 
+  font-weight: bold;
 }
 /* From Uiverse.io by bociKond */ 
 .form {
   --bg-light: #efefef;
-  --bg-dark: #707070;
+  --bg-dark: black;
   --clr: black;
-  --clr-alpha: #9c9c9c60;
+  --clr-alpha: cornsilk;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -123,10 +122,7 @@ label{
   gap: 0.5rem;
 }
 
-.form input[type="email"],
-.form input[type="password"],
-.form input[type="url"]
-.form input[type="text"] {
+.form input {
   border-radius: 0.5rem;
   padding: 1rem 0.75rem;
   width: 100%;
@@ -138,8 +134,8 @@ label{
   outline: 2px solid var(--bg-dark);
 }
 
-.form input[type="email"]:focus,
-.form input[type="password"]:focus {
+.form input:focus,
+.form input:focus {
   outline: 2px solid var(--clr);
 }
 
@@ -172,11 +168,11 @@ label{
 
 .span {
   text-decoration: none;
-  color: var(--bg-dark);
+  color: var(--clr);
 }
 
-.span a {
-  color: var(--clr);
+.span router-link {
+  color: burlywood ;
 }
 
 

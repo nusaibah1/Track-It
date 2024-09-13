@@ -20,6 +20,7 @@
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 .card{
     width: 18rem;
 
@@ -27,12 +28,14 @@
 
 .card-header{
     background-color: black;
-    color: bisque;
+    color: white;
+    font-family: "Michroma", sans-serif;
 }
 .card-body{
     background-color: white;
     font-weight: bold;
-    color: bisque;
+    font-family: "Montserrat", sans-serif;
+    color: black;
 }
 
 

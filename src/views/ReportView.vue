@@ -64,13 +64,11 @@
             </div>
         </div>
         <div class="col py-3">
-            
-            <!-- <button class="btn bg-secondary"  @click="downloadSalesReport">Generate Report</button> -->
             <div class="container-fluid">
               <div>
-    <h3>Sales Report</h3>
-    <ul v-if="sales && sales.length">
-                    <li v-for="sale in sales" :key="sale.saleID">
+    <h3 ref="content">Sales Report</h3>
+    <ul v-if="sales && sales.length" ref="content">
+                    <li  v-for="sale in sales" :key="sale.saleID">
                         <CardComp>
                             <template #cardHeader> <svg version="1.1" viewBox="0 0 2048 2048" width="30" height="30" xmlns="http://www.w3.org/2000/svg">
 <path transform="translate(797)" d="m0 0h23l16 6 13 9 10 11 29 44 29 43 29 44 29 43 29 44 15 22 4 6h2l158-237 10-14 9-9 14-8 12-4h22l20 7 120 48 149 60 27 11 95 38 44 18 85 34 37 15 14 8 10 9 6 8 5 10 4 16v11l-3 14-8 16-140 210-9 14-1 4-1 552-3 12-7 14-8 10-10 7-19 9-95 38-37 15-65 26-32 13-100 40-34 14-95 38-27 11-90 36-27 11-18 6-6 1h-16l-12-3-132-53-32-13-100-40-34-14-90-36-27-11-65-26-139-56-14-7-10-9-7-8-6-12-3-11-1-10v-546l-10-16-29-43-29-44-29-43-29-44-26-39-6-12-3-12v-16l4-15 6-11 9-10 8-7 14-7 152-61 27-11 75-30 27-11 112-45 75-30 37-15 47-19z" fill="#FEC251"/>
@@ -83,26 +81,29 @@
 <path transform="translate(1196,1524)" d="m0 0 18 2 12 5 10 7 10 10 7 12 4 12 1 7v348h89l15 4 12 7 10 9 7 10 5 10 3 12v16l-5 16-6 11-11 12-11 7-12 5-7 2h-156l-17-5-11-6-10-9-7-9-6-12-3-14v-417l4-14 6-11 9-10 9-8 13-6 7-2z" fill="#2E6AE6"/>
 </svg>{{ sale.quantitySold }}</template>
                             <template #cardBody>
-                              <router-link :to="{ name: 'itemDetails', params: { id: sale.prodID } }">
+                              
+<p>Product ID: {{ sale.prodID }}</p>
+                               <p>Date Of Sale: <br>
+                                {{ sale.date}}</p>
+                                <p>Selling Price: {{ sale.sellingPrice }}</p>
+                                <router-link :to="{ name: 'itemDetails', params: { id: sale.prodID } }">
  <button>Details</button>
 </router-link>
 
-<p>Product ID: {{ sale.prodID }}</p>
-                               
-                                <p>Selling Price: {{ sale.sellingPrice }}</p>
                             </template>
                         </CardComp>
-                    </li>
+                      </li>
                 </ul>
                 <Spinner v-else />
 
   </div>
        
        
+      
        
+     
        
-       
-       
+  <button @click="generatePDF()">Download as PDF</button>
        
        
        
@@ -112,7 +113,7 @@
      
       <button @click="sortTasksAlphabetically()">Sort</button><input type="text" id="task-input" placeholder="Enter a task"> <button @click="addTask()">Add Task</button>
    <br>
-      <ul id="task-list"></ul>
+      <p id="task-list"></p>
 
 </div>
 
@@ -129,7 +130,7 @@
 <script>
 import CardComp from '@/components/Card.vue'
 import Spinner from '@/components/Spinner.vue';
-
+import html2pdf from 'html2pdf.js'
 export default {
   components: {
    CardComp,
@@ -142,14 +143,29 @@ export default {
         saleID: "",
         prodID: "", 
         quantitySold: "",
-        sellingPrice: ""
+        sellingPrice: "",
+        date: "",
       }
     }
   },
   methods: {
-    downloadReport() {
-      this.$store.dispatch('downloadSalesReport');
-    },
+    generatePDF() {
+  const element = this.$refs.content; 
+  const options = {
+    margin: 1, 
+    filename: 'report.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2,
+      width: 794, 
+      height: 1122, },
+    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+  };
+
+  html2pdf().from(element).set(options).save(); 
+
+},
+  
+
     addTask() {
       const taskInput = document.getElementById('task-input');
       const taskName = taskInput.value.trim();
@@ -174,23 +190,20 @@ export default {
 
       this.tasks.forEach(task => {
         const taskItem = document.createElement('li');
-        const taskCheckbox = document.createElement('input');
-        taskCheckbox.type = 'checkbox';
-        taskCheckbox.checked = task.completed;
-        taskCheckbox.addEventListener('change', () => this.toggleTaskCompletion(task.id));
-
+        
         const taskLabel = document.createElement('label');
         taskLabel.textContent = `${task.name} (DOS: ${task.createdDate})`;
 
         const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'X';
-        deleteButton.addEventListener('click', () => this.deleteTask(task.id));
-
-        taskItem.appendChild(taskCheckbox);
-        taskItem.appendChild(taskLabel);
-        taskItem.appendChild(deleteButton);
-        taskList.appendChild(taskItem);
-      });
+        deleteButton.textContent = 'X'
+        deleteButton.style.backgroundColor = 'black';
+        deleteButton.style.color = 'bisque'
+        deleteButton.addEventListener('click', () => this.deleteTask(task.id))
+       
+        taskItem.appendChild(taskLabel)
+        taskItem.appendChild(deleteButton)
+        taskList.appendChild(taskItem)
+      })
     },
     toggleTaskCompletion(taskId) {
       const task = this.tasks.find(t => t.id === taskId);
@@ -209,20 +222,22 @@ export default {
       this.renderTasks();
     },
     saveTasks() {
-      localStorage.setItem('tasks', JSON.stringify(this.tasks));
-      console.log('Tasks saved to local storage:', this.tasks);
+      localStorage.setItem('tasks', JSON.stringify(this.tasks))
+      console.log('Tasks saved to local storage:', this.tasks)
     }
-  },
+},
   computed: {
    sales() {
     return this.$store.state.sales
    }
+  
   },
   mounted() {
     this.renderTasks();
     this.$store.dispatch('fetchSales')
-    this.$store.dispatch('fetchProfit')
-    this.$store.dispatch('fetchLoss')
+    // this.$store.dispatch('fetchTotal')
+    // this.$store.dispatch('fetchProfit')
+    // this.$store.dispatch('fetchLoss')
  
   }
 }
@@ -242,8 +257,9 @@ export default {
   justify-self: flex-end;
 
  }
-input, button, li, ul{
-    float: right;
+ li, ul{
+    float: left;
+    list-style: none;
 }
 table,h3, button{
     font-family: "Michroma", sans-serif;   
@@ -252,4 +268,11 @@ button{
   background-color: black;
   color: bisque;
 }
+#task-list{
+  float: left;
+  font-weight: bold;
+  list-style: none;
+
+}
+
 </style>

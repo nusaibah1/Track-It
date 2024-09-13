@@ -4,7 +4,7 @@
 
     <footer class="container-fluid">
         <div class="row">
-            <footer class="t">Track It &copy; <span>
+            <footer class="t sticky-bottom">Track It &copy; <span>
                 {{ currentYear }}
                 </span>
          </footer>
@@ -38,6 +38,13 @@ data() {
     font-family: "Michroma", system-ui;
     text-align: center;
     color: bisque;
+
+
    
 }
+footer {
+  position: fixed;
+  bottom: 0;
+}
+
 </style>

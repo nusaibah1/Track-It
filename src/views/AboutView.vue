@@ -149,25 +149,33 @@ h1{
     font-family: "Michroma", system-ui;
     text-align: center;
 }
-h3,h1{
+h1:hover{
     color: bisque;
 }
-
+h3,h1{
+   color: black;
+}
+h3:hover{
+    color: bisque;
+}
 .container-fluid{
     font-family: "Michroma", system-ui !important;
-    display: inline-block;
+    /* display: inline-block;
     margin: 0 1.5%;
-    width: 30%;
+    width: 30%; */
   
 }
 p:hover{
-    color: dimgrey;
+    color: cornsilk;
 }
 /* #one{
     float: right;
 
  
 } */
+ svg:hover{
+    fill: #333;
+ }
 </style>
 
 <script>

@@ -64,18 +64,27 @@
               </div>
           </div>
           <div class="col py-3">
-           <div class="row display-2">
+          
             <h3>
             Items
         </h3>
-           </div>
-          
-              
-              <button class="btn bg-secondary">Generate Report</button>
-              <button @click="addItem()" class="btn bg-black">Add Item</button>
-              <!-- <router-link :to="{ name: 'itemDetails', params: { id: item.prodID }}">
-              <button class="btn">View</button>
-            </router-link> -->
+           <!-- Search and Sort Controls -->
+<div class="row mb-3">
+              <div class="col-md-6">
+                <input
+                  type="text"
+                  v-model="searchQuery"
+                  class="form-control"
+                  placeholder="Search Items..."
+                />
+              </div>
+              <div class="col-md-6">
+                <select v-model="sortOrder" class="form-select">
+                  <option value="asc">Sort Alphabetically Ascending</option>
+                  <option value="desc">Sort Alphabetically Descending</option>
+                </select>
+              </div>
+            </div>
               <table class="table table-bordered">
             <thead>
                 <tr>
@@ -91,9 +100,9 @@
                     <th>Edit</th>
                 </tr>
             </thead>
-            <tbody v-if="items">
-         
-                <tr v-for="item in items" :key="item.prodID">
+            <tbody v-if="filteredAndSortedItems.length">
+             
+                <tr v-for="item in filteredAndSortedItems" :key="item.prodID">
                     <td>{{ item.prodID }}</td>
                     <td>{{ item.prodSKU }}</td>
                     <td><img :src="item.prodURL" :alt="item.prodName" class="img-thumbnail"></td>
@@ -105,29 +114,7 @@
                     <td>{{ item.prodCategory }}</td>
                     <td>{{ item.SuppID }}</td>
                     <td>
-                        <!-- <button @click="updateItem(item)" class="btn bg-black">Update</button> -->
-                        <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
- Edit
-</button> -->
-
-<!-- Modal -->
-<!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-      </div>
-    </div>
-  </div>
-</div> -->
+                       
 
 
 <button class="btn btn-secondary" data-bs-toggle="modal" :data-bs-target="`#editProductModal${item.itemID}`">
@@ -201,12 +188,15 @@
                 </tr>
             </tbody>
         </table>
-        
-              
+          </div>
+              <!-- <button class="btn bg-secondary">Generate Report</button>
+              <button @click="addItem()" class="btn bg-black">Add Item</button> -->
+              <!-- <router-link :to="{ name: 'itemDetails', params: { id: item.prodID }}">
+              <button class="btn">View</button>
+            </router-link> -->
          </div>
       </div>
-  </div>
-  
+
   </template>
 
 
@@ -233,7 +223,8 @@ export default {
     },
     data() {
         return {
-          
+          searchQuery: '',
+          sortOrder: '',
             itemPayload: {
              
                 prodID: '',
@@ -249,9 +240,22 @@ export default {
     },
     computed: {
         items(){
-            return this.$store.state.items
-        }
-    },
+            return this.$store.state.items || []
+        },
+        filteredAndSortedItems() {
+      const filtered = this.items.filter(item =>
+        item.prodName.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+        item.prodSKU.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+        item.prodDescription.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+
+      return filtered.sort((a, b) => {
+        const comparison = a.prodName.localeCompare(b.prodName);
+        return this.sortOrder === 'asc' ? comparison : -comparison;
+      });
+    }
+  },
+   
     mounted() {
   
         this.$store.dispatch('fetchItems');
@@ -341,9 +345,9 @@ float: right;
 
     font-family: "Michroma", sans-serif;
 }
-/* td{
+td{
    
     font-weight: bold;
     
-} */
+}
 </style>

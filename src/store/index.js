@@ -27,6 +27,8 @@ export default createStore({
     sale: null,
     suppliers: null,
     supplier: null,
+    total: null,
+    userID: null,
     // salesData: []
   },
   getters: {
@@ -73,9 +75,8 @@ export default createStore({
     setSales(state, value) {
      state.sales = value
     },
-    signOut(state) {
-    state.token = null
-    cookies.remove('LegitUser')
+    setTotal(state, value) {
+     state.total = value
     },
   
   },
@@ -88,7 +89,7 @@ export default createStore({
       if (results) {
         context.commit('setUsers', results)
       } else {
-        toast.error(`${msg}`, {
+        toast.error(`${msg}|| Session Expired. Relogin to proceed`, {
           autoClose: 3000
         })
       }
@@ -126,6 +127,7 @@ export default createStore({
       if (token) {
         cookies.set('LegitUser', { token: token, expires: 7 });
         context.dispatch('fetchUsers')
+        router.push({ name: 'report' }) 
         toast.success(`${msg}`, {
           autoClose: 3000
       
@@ -221,9 +223,6 @@ async login(context, payload) {
 },
 
 
-signOut({commit}) {
-  commit('signOut')
-},
 
 
 
@@ -414,6 +413,9 @@ if(msg) {
 async fetchOrders(context, payload) {
   try {
     const { results, msg } = await (await axios.get(`${apiURL}user/${payload.userID}/orders`, payload)).data
+    console.log('API URL:', `${apiURL}user/${payload.userID}/orders`);
+console.log('Payload:', payload);
+
     if (results) {
       context.commit('setOrders', results)
     } else {
@@ -584,41 +586,59 @@ async fetchSale(context, id) {
   }
 },
 // Fetch Profit
-async fetchProfit(context, id) {
-try{
- const {result, msg} = await(await axios.get(`${apiURL}sales/${id}/profit`)).data
- if(result) {
-  context.commit('setProfit', result)
- }else{
-  toast.error(`${msg}`, {
-    autoClose: 3000
-  })
- }
-}catch(e) {
-  toast.error(`${e.message}`, {
-    autoClose: 3000
+// async fetchProfit(context, id) {
+// try{
+//  const {result, msg} = await(await axios.get(`${apiURL}sales/${id}/profit`)).data
+//  if(result) {
+//   context.commit('setProfit', result)
+//  }else{
+//   toast.error(`${msg}`, {
+//     autoClose: 3000
+//   })
+//  }
+// }catch(e) {
+//   toast.error(`${e.message}`, {
+//     autoClose: 3000
    
-  })
-}
-},
+//   })
+// }
+// },
 
 // Fetch Loss 
-async fetchLoss(context, id) {
+// async fetchLoss(context, id) {
+//   try{
+//     const {result, msg} = await(await axios.get(`${apiURL}sales/${id}/loss`)).data
+//     if(result) {
+//       context.commit('setLoss' ,result)
+//     }else{
+//       toast.error(`${msg}`, {
+//         autoClose: 3000
+//       })
+//     }
+//   } catch(e) {
+//     toast.error(`${e.message}` ,{
+//       autoClose: 3000
+//     })
+//   }
+// }
+async fetchTotal(context, id) {
   try{
-    const {result, msg} = await(await axios.get(`${apiURL}sales/${id}/loss`)).data
-    if(result) {
-      context.commit('setLoss' ,result)
-    }else{
-      toast.error(`${msg}`, {
-        autoClose: 3000
-      })
-    }
-  } catch(e) {
-    toast.error(`${e.message}` ,{
-      autoClose: 3000
+    const { result, msg } = await (await axios.get(`${apiURL}item/totals/${id}`)).data
+     if(result) {
+       context.commit('setItem', result)
+     } else {
+       toast.error(`${msg}` , {
+         autoClose: 3000
+       })
+      
+     }
+   } catch(e) {
+    toast.error(`${e.message}`, {
+     autoClose: 3000
+ 
     })
+   }
   }
-}
   },
   modules: {
   }
