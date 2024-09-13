@@ -39,42 +39,35 @@ userRouter.post('/login', (req, res) => {
 
 
 // =====Orders=======
-userRouter.get('/:id/orders',authenticateToken,(req, res) => {
+userRouter.get('/:id/orders',(req, res) => {
     orders.fetchOrders(req, res)
 })
 
 // Retrieve an order based off the userID
-userRouter.get('/:id/order/:orderID', authenticateToken,(req, res) => {
+userRouter.get('/:id/order/:orderID',(req, res) => {
     orders.fetchOrder(req,res)
 })
 
 // Add an order
-userRouter.post('/:id/order', authenticateToken,(req, res) => {
+userRouter.post('/:id/order',(req, res) => {
     orders.addOrder(req, res)
 })
 
 // Update an order 
-userRouter.patch('/:id/order/:orderID', authenticateToken,(req, res) => {
+userRouter.patch('/:id/order/:orderID',(req, res) => {
     orders.updateOrder(req, res)
 })
 
 // Delete All Orders 
-userRouter.delete('/:id/order', authenticateToken,(req, res) => {
+userRouter.delete('/:id/order',(req, res) => {
     orders.deleteOrders(req,res)
 })
 
 // Delete a single order 
-userRouter.delete('/:id/order/:orderID', authenticateToken,(req, res) => {
+userRouter.delete('/:id/order/:orderID',(req, res) => {
     orders.deleteOrder(req, res)
 })
-// Profit
-userRouter.get('/profit', authenticateToken,(req, res) => {
-    users.fetchProfit(req, res)
-})
-// Loss
-userRouter.get('/loss', authenticateToken,(req, res) =>{
-    users.fetchLoss(req, res)
-})
+
 
 
 export {

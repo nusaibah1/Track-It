@@ -140,27 +140,32 @@ class Products {
     
         
     categoryTotals(req, res) {
+        const prodID = req.params.id; 
         const strQry = `
           SELECT 
             prodCategory,
             SUM(prodQuantity * sellingPrice) AS Total
           FROM 
             Products
-          GROUP BY 
-            prodCategory;
-        `;
+          WHERE 
+            prodID = ?;`
         
-        db.query(strQry, (err, results) => {
+        db.query(strQry, [prodID], (err, results) => {
           if (err) {
-            // Send error response instead of throwing error
             return res.status(500).json({
               status: 500,
               msg: 'Unable to retrieve category totals',
-              error: err.message // Add more error context if needed
+              error: err.message
             });
           }
           
-          // If no error, return the results
+          if (results.length === 0) {
+            return res.status(404).json({
+              status: 404,
+              msg: 'Category not found'
+            });
+          }
+          
           res.json({
             status: res.statusCode,
             results
