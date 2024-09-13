@@ -23,12 +23,12 @@ userRouter.post('/register',  (req, res) => {
     users.registerUser(req,res)
 })
 //Update a single User
-userRouter.patch('/:id',authenticateToken,(req, res) => {
+userRouter.patch('/:id',(req, res) => {
     users.updateUser(req, res)
 })
 
 // Delete a single User
-userRouter.delete('/:id',authenticateToken,(req, res) => {
+userRouter.delete('/:id',(req, res) => {
     users.deleteUser(req, res)
 })
 

@@ -7,19 +7,19 @@ salesRouter.use(bodyParser.json())
 
 
 // Retrieve Total Sales
-salesRouter.get('/', authenticateToken , (req, res) => {
+salesRouter.get('/' , (req, res) => {
     sales.fetchSales(req, res)
 })
 
-salesRouter.get('/:id', authenticateToken,(req, res) => {
+salesRouter.get('/:id',(req, res) => {
     sales.fetchSale(req, res)
 })
 
-salesRouter.get('/:id/profit',authenticateToken ,(req, res) => {
+salesRouter.get('/:id/profit' ,(req, res) => {
     sales.fetchProfit(req, res)
 })
 
-salesRouter.get('/:id/loss', authenticateToken,(req, res) => {
+salesRouter.get('/:id/loss',(req, res) => {
     sales.fetchLoss(req, res)
 })
 export{

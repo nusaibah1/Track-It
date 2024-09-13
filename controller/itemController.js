@@ -9,38 +9,42 @@ const itemRouter = express.Router()
 itemRouter.use(bodyParser.json())
 
 // Retrieve all Items
-itemRouter.get('/' ,authenticateToken,(req, res) => {
+itemRouter.get('/' ,(req, res) => {
 products.fetchProducts(req, res)
 })
 
 // Recent Items
-itemRouter.get('/recent',authenticateToken,(req, res) => {
+itemRouter.get('/recent',(req, res) => {
     products.recentProducts(req, res)
 })
 
 //Rerieve a Single Item
 //
-itemRouter.get('/:id' , authenticateToken,(req, res) => {  
+itemRouter.get('/:id' ,(req, res) => {  
     products.fetchProduct(req, res)
 })
 
 // Add a single Item
-itemRouter.post('/add',  authenticateToken,(req, res) => {  
+//authenticateToken,
+itemRouter.post('/add',  (req, res) => {  
     products.addProduct(req, res)
 })
 
 //Update an item
-itemRouter.patch('/:id',authenticateToken,(req, res) => { 
+itemRouter.patch('/:id',(req, res) => { 
     products.updateProduct(req, res)
 })
 
 //Delete an item
-itemRouter.delete('/:id',authenticateToken, (req, res) => { 
+itemRouter.delete('/:id', (req, res) => { 
     products.deleteProduct(req, res)
 })
 
 
-
+// Total Per Catergory
+itemRouter.get('/totals/:id', (req, res) => {
+    products.categoryTotals(req, res)
+})
 export {
     itemRouter
 }
