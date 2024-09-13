@@ -13,6 +13,7 @@
     "bootstrap-icons": "^1.11.3",
     "core-js": "^3.8.3",
     "css-loader": "^7.1.2",
+    "html2pdf.js": "^0.10.2",
     "register-service-worker": "^1.7.2",
     "toastify": "^2.0.1",
     "vue": "^3.2.13",

@@ -1,4 +1,5 @@
 <template>
+
     <div class="container-fluid">
       <div class="row flex-nowrap">
           <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
@@ -44,32 +45,19 @@
                           <router-link to="/suppliers" class="nav-link px-0 align-middle">
                               <i class="fs-4 bi-truck"></i> <span class="ms-1 d-none d-sm-inline">Suppliers</span> </router-link>
                       </li>
+                      <li>
+</li>
                   </ul>
-                  <hr>
-                  <div class="dropdown pb-4">
-                      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                          <img src="https://nusaibah1.github.io/inventoryImages/images/admin.jpg" alt="hugenerd" width="30" height="30" class="rounded-circle">
-                          <span class="d-none d-sm-inline mx-1">Admin</span>
-                      </a>
-                      <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                          <li><a class="dropdown-item" href="#">New project...</a></li>
-                          <li><a class="dropdown-item" href="#">Settings</a></li>
-                          <li><a class="dropdown-item" href="#">Profile</a></li>
-                          <li>
-                              <hr class="dropdown-divider">
-                          </li>
-                          <li><a class="dropdown-item" href="#">Sign out</a></li>
-                      </ul>
-                  </div>
+                  
+
+                 
               </div>
           </div>
         <div class="col py-3">
-          <button class="btn bg-secondary">Generate Report</button>
-          <button class="btn bg-black" @click="addUser()">Add User</button>
-          
+     
           <div class="container-fluid">
             <div class="row display-2">
-              <h2>Users</h2>
+              <h2>Employees</h2>
             </div>
   
             <!-- Search and Sort Controls -->
@@ -79,7 +67,7 @@
                   type="text"
                   v-model="searchQuery"
                   class="form-control"
-                  placeholder="Search users..."
+                  placeholder="Search Employees..."
                 />
               </div>
               <div class="col-md-6">
@@ -94,6 +82,7 @@
               <thead>
                 <tr>
                   <th>UserID</th>
+                  <th>User Details</th>
                   <th>User Profile</th>
                   <th>First Name</th>
                   <th>Last Name</th>
@@ -105,6 +94,9 @@
               <tbody v-if="filteredAndSortedUsers.length">
                 <tr v-for="user in filteredAndSortedUsers" :key="user.userID">
                   <td>{{ user.userID }}</td>
+                  <td> <router-link :to="{ name: 'userProfile', params: { id: user.userID } }">
+ <button>Details</button>
+</router-link></td>
                   <td>
                     <img :src="user.userUrl" :alt="user.userName" class="img-thumbnail img-fluid" />
                   </td>
@@ -113,28 +105,58 @@
                   <td>{{ user.userRole }}</td>
                   <td>{{ user.userEmailAdd }}</td>
                   <td>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                      Edit
-                    </button>
-                    <!-- Modal -->
-                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                            ...
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Understood</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <button @click="updateUser(user.userID)" class="btn " data-bs-toggle="modal" :data-bs-target="`#editUserModal${user.userID}`">
+                                <p class="fa-solid fa-user-pen"></p> Edit
+                            </button>
+                            <!-- Edit User Modal -->
+                            <div class="modal fade" :id="`editUserModal${user.userID}`" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit User</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                 <div class="mb-3">
+                                   <label for="firstName" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="firstName" v-model="user.userName">
+                                 </div>
+                                <div class="mb-3">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="lastName" v-model="user.userSurname">
+                                  </div>
+                                  <div class="mb-3">
+                                    <label for="userPass" class="form-label">Password</label>
+                                   <input type="password" class="form-control" id="userPass" v-model="user.userPass">
+                                  </div>
+                               
+                                
+                              <div class="mb-3">
+                            <label for="userRole" class="form-label">Role</label>
+                                   <select class="form-select" id="userRole" v-model="user.userRole">
+                                      <option value="Admin">Admin</option>
+                                     <option value="User">User</option>
+                                   </select>
+                                  </div>
+                                 <div class="mb-3">
+                                    <label for="emailAdd" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="emailAdd" v-model="user.userEmailAdd">
+                                  </div>
+                                  <div class="mb-3">
+                                    <label for="userProfile" class="form-label">Profile</label>
+                                    <input type="img" class="form-control" id="userProfile" v-model="user.userUrl">
+                                  </div>
+                            </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary" @click="updateUser()">Save changes</button>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                    
                     <button @click="deleteUser(user.userID)" class="btn">
                       <p class="fa-solid fa-user-minus"></p> Delete
                     </button>
@@ -145,6 +167,9 @@
                 <Spinner />
               </tbody>
             </table>
+            <button class="btn bg-secondary">Generate Report</button>
+          <button class="btn bg-black" @click="addUser()">Add User</button>
+        
           </div>
         </div>
       </div>
@@ -224,5 +249,8 @@ th{
 }
 img{
  height: 60px
+}
+td{
+  font-weight: bold;
 }
 </style>
