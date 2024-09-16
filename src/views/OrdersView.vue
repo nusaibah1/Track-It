@@ -65,9 +65,9 @@
         </div>
         <div class="col py-3">
             <button class="btn bg-secondary">Generate Report</button>
-            <router-link :to="{ name: 'orderView', params: { id: order.orderID } }">
+            <!-- <router-link :to="{ name: 'orderView', params: { id: order.orderID } }">
  <button>Order Details</button>
-</router-link>
+</router-link> -->
             <h3>Orders</h3>
             <table class="table table-bordered">
                 <thead>
