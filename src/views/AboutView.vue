@@ -165,14 +165,12 @@ h3:hover{
     width: 30%; */
   
 }
-p:hover{
-    color: cornsilk;
-}
-/* #one{
+
+#one{
     float: right;
 
  
-} */
+}
  svg:hover{
     fill: #333;
  }

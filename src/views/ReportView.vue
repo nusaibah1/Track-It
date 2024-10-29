@@ -67,12 +67,16 @@
         </div>
         <div class="col py-3">
             <div class="container-fluid">
+
+      
               <div>
     <h3 ref="content">Sales Report</h3>
+    <button @click="generatePDF()" id="down">Download as PDF</button>
+       
     <ul v-if="sales && sales.length" ref="content">
                     <li  v-for="sale in sales" :key="sale.saleID">
                         <CardComp>
-                            <template #cardHeader> <svg version="1.1" viewBox="0 0 2048 2048" width="30" height="30" xmlns="http://www.w3.org/2000/svg">
+   <template #cardHeader> <svg version="1.1" viewBox="0 0 2048 2048" width="30" height="30" xmlns="http://www.w3.org/2000/svg"  class="pop-icon">
 <path transform="translate(797)" d="m0 0h23l16 6 13 9 10 11 29 44 29 43 29 44 29 43 29 44 15 22 4 6h2l158-237 10-14 9-9 14-8 12-4h22l20 7 120 48 149 60 27 11 95 38 44 18 85 34 37 15 14 8 10 9 6 8 5 10 4 16v11l-3 14-8 16-140 210-9 14-1 4-1 552-3 12-7 14-8 10-10 7-19 9-95 38-37 15-65 26-32 13-100 40-34 14-95 38-27 11-90 36-27 11-18 6-6 1h-16l-12-3-132-53-32-13-100-40-34-14-90-36-27-11-65-26-139-56-14-7-10-9-7-8-6-12-3-11-1-10v-546l-10-16-29-43-29-44-29-43-29-44-26-39-6-12-3-12v-16l4-15 6-11 9-10 8-7 14-7 152-61 27-11 75-30 27-11 112-45 75-30 37-15 47-19z" fill="#FEC251"/>
 <path transform="translate(797)" d="m0 0h23l16 6 13 9 10 11 29 44 29 43 29 44 29 43 29 44 15 22 4 6h2l158-237 10-14 9-9 14-8 12-4h22l20 7 120 48 149 60 27 11 95 38 44 18 85 34 37 15 14 8 10 9 6 8 5 10 4 16v11l-3 14-8 16-150 225-5 3-22 8-12 5-29 12-50 20-71 29-23 9-24 10-18 7-11 5-45 18-27 11-70 28-18 7-12 5-25 10-27 11-85 34-66 26-25 10-13 5h-3v-493l-1-49-3-2-18 7-16 6-21 9-32 13-20 8-16 6-27 11-36 15-17 7-50 20-29 12-23 9-140 56-28 11-12 5-32 13-50 20-37 15-26 10-11 5-19 8-11 4h-7l-29-44-29-43-29-44-29-43-29-44-7-11-5-10-3-12v-16l4-15 6-11 9-10 8-7 14-7 152-61 27-11 75-30 27-11 112-45 75-30 37-15 47-19z" fill="#FEA650"/>
 <path transform="translate(344,549)" d="m0 0 6 1 24 9 36 15 28 11 29 12 30 12 34 14 45 18 42 17 37 15 65 26 49 20 205 82 48 20 2 2 1 370v203l-1 7h7v1h-16l-12-3-132-53-32-13-100-40-34-14-90-36-27-11-65-26-139-56-14-7-10-9-7-8-6-12-3-11-1-10v-543z" fill="#FEE982"/>
@@ -96,26 +100,35 @@
                         </CardComp>
                       </li>
                 </ul>
+                
                 <Spinner v-else />
+               
 
   </div>
-       
        
       
        
      
        
-  <button @click="generatePDF()">Download as PDF</button>
+
        
        
        
-       
-              <h3>Tasks</h3>
-       
-     
-      <button @click="sortTasksAlphabetically()">Sort</button><input type="text" id="task-input" placeholder="Enter a task"> <button @click="addTask()">Add Task</button>
+  <CardComp id="task-card">
+        <template #cardHeader>
+          <h3>Tasks</h3>
+        </template>
+        <template #cardBody>
+          <input type="text" id="task-input" placeholder="Enter a task">
+          <button @click="sortTasksAlphabetically()">Sort</button>
+          <button @click="addTask()">Add Task</button>
    <br>
       <p id="task-list"></p>
+        </template>
+       </CardComp>      
+       
+     
+ 
 
 </div>
 
@@ -276,5 +289,28 @@ button{
   list-style: none;
 
 }
+#task-card{
+  float: top;
+}
+input{
+  width: 7rem !important;
+}
+#down{
+  float: right;
+  margin: 3em;
+}
+.pop-icon {
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+  animation: pop-out-in 3m ease-in-out 1;
+  /* animation: pop-out-in 1s ease-in-out alternate infinite; */
+}
 
+@keyframes pop-out-in {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
 </style>
