@@ -2,15 +2,24 @@
   <Navbar/>
   <div class="container-fluid">
     <h1>Welcome to TrackIt</h1>
-    <p class="lead">A tactful inventory management tool dedicated to making your life simpler.</p>
-    <p class="lead">Track It is an Inventory System dedicated to ensuring effortless management! Here, you can effortlessly track and manage your inventory, streamline your operations, and make informed decisions to optimize stock levels. Let us help you simplify your inventory management and enhance your productivity. 
-      Enjoy seamless organization and efficient control at your fingertips</p>
- 
- <router-link to="signUp"><button class="btn mx-auto d-flex justify-content-center">Get Started</button></router-link>
- <router-link to="logIn"><button class="btn mx-auto d-flex justify-content-center">Log In</button></router-link>
-      
+    <p class="lead">
+      A tactful inventory management tool dedicated to making your life simpler.
+    </p>
+    <p class="lead">
+      Track It is an Inventory System dedicated to ensuring effortless management! 
+      Here, you can effortlessly track and manage your inventory, streamline your operations,
+      and make informed decisions to optimize stock levels. Let us help you simplify your inventory management 
+      and enhance your productivity.Enjoy seamless organization and efficient control at your fingertips
+    </p>
+  <div class="d-flex justify-content-center gap-3">
+      <router-link to="signUp">
+        <button class="btn" id="signUp">Get Started</button>
+      </router-link>
+      <router-link to="logIn">
+        <button class="btn" id="logIn">Log In</button>
+      </router-link>
+    </div>
   </div>
-
 </template>
 
 <script>
@@ -31,6 +40,15 @@ components: {
 </script>
 
 <style scoped>
+#signUp, #logIn{
+  text-decoration: none;
+}
+#signUp{
+ background-color:  #4b7f52;
+}
+#logIn{
+ background-color:#db2b39 ; 
+}
 .container{
   display: flex;
   justify-content: center;
@@ -61,9 +79,9 @@ button {
   color: bisque;
   margin: 0.2%;
   font-weight: bold;
-  text-decoration: none;
+  
 }
 button:hover{
-  background-color: bisque;
+  background-color: green;
 }
 </style>

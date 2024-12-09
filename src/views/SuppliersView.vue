@@ -35,11 +35,7 @@
                               <i class="fs-4 bi-people"></i><span class="ms-1 d-none d-sm-inline">Users</span></router-link>
                           
                       </li>
-                      <li>
-                          <router-link href="#submenu3" to="/about" class="nav-link px-0 align-middle" >
-                              <i class="fs-4 bi-blockquote-left"></i><span class="ms-1 d-none d-sm-inline">About</span> </router-link>
-                             
-                      </li>
+                     
                       <li>
                           <router-link to="/suppliers" class="nav-link px-0 align-middle">
                               <i class="fs-4 bi-truck"></i> <span class="ms-1 d-none d-sm-inline">Suppliers</span> </router-link>
