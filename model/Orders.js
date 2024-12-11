@@ -4,26 +4,47 @@ import {connection as db} from '../config/config.js'
 
 class Orders {
 fetchOrders(req, res) {
-        try{
-         const strQry = `
-         select o.orderID, o.userID, p.prodName, o.State, o.orderQuantity, o.Total
-            from Orders o 
-            join Products p on o.prodID
-            join Users u on o.userID = u.userID
-            where o.userID = ${req.params.id};`
-         db.query(strQry, (err, results) => {
-            if(err)  console.log(err)//throw new Error(`Unable to retrieve all orders`)
-                res.json({
-            status: res.statusCode, results
-            })
-         })
-        }catch(e) {
-   res.json({
-    status: 404,
-    msg: e.message
-   })
-        }
+    try {
+        const strQry = `
+        SELECT o.orderID, o.userID, p.prodName, o.State, o.orderQuantity, o.Total
+        FROM Orders o 
+        JOIN Products p ON o.prodID = p.prodID
+        JOIN Users u ON o.userID = u.userID
+        WHERE o.userID = ?;`
+        
+        db.query(strQry, [req.params.id], (err, results) => {
+            if (err) {
+                console.error('Error fetching orders:', err);
+                return res.status(500).json({
+                    status: 500,
+                    msg: 'Unable to retrieve orders',
+                    error: err.message
+                });
+            }
+            
+            if (results.length === 0) {
+                return res.json({
+                    status: 200,
+                    results: [],
+                    msg: 'No orders found for this user'
+                });
+            }
+            
+            res.json({
+                status: 200,
+                results: results,
+                msg: 'Orders retrieved successfully'
+            });
+        });
+    } catch(e) {
+        console.error('Unexpected error:', e);
+        res.status(500).json({
+            status: 500,
+            msg: 'Internal server error',
+            error: e.message
+        });
     }
+}
 
 fetchOrder(req, res) {
     try{
