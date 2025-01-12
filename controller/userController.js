@@ -14,7 +14,7 @@ userRouter.get('/',(req, res) => {
     users.fetchUsers(req, res)
 })
 // Retrieve a single User
-userRouter.get('/:id',authenticateToken,(req, res) => {
+userRouter.get('/:id',(req, res) => {
     users.fetchUser(req, res)
 })
 
