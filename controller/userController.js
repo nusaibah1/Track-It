@@ -10,7 +10,7 @@ userRouter.use(bodyParser.json())
 
 
 //Retrieve All Users 
-userRouter.get('/',authenticateToken,(req, res) => {
+userRouter.get('/',(req, res) => {
     users.fetchUsers(req, res)
 })
 // Retrieve a single User

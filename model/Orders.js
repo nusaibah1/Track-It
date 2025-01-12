@@ -3,48 +3,38 @@ import {connection as db} from '../config/config.js'
 
 
 class Orders {
-fetchOrders(req, res) {
-    try {
-        const strQry = `
-        SELECT o.orderID, o.userID, p.prodName, o.State, o.orderQuantity, o.Total
-        FROM Orders o 
-        JOIN Products p ON o.prodID = p.prodID
-        JOIN Users u ON o.userID = u.userID
-        WHERE o.userID = ?;`
-        
-        db.query(strQry, [req.params.id], (err, results) => {
-            if (err) {
-                console.error('Error fetching orders:', err);
-                return res.status(500).json({
-                    status: 500,
-                    msg: 'Unable to retrieve orders',
-                    error: err.message
-                });
-            }
+    async fetchOrders(req, res) {
+        try {
+            const strQry = `
+            SELECT orderID, userID, prodID, State, orderQuantity, Total
+            FROM Orders
+            WHERE userID = ?;`;
             
-            if (results.length === 0) {
-                return res.json({
+            db.query(strQry, [req.params.id], (err, results) => {
+                if(err) {
+                    console.error('Error fetching orders:', err);
+                    return res.status(500).json({
+                        status: 500,
+                        msg: 'Unable to retrieve orders',
+                        error: err.message
+                    });
+                }
+                
+                res.json({
                     status: 200,
-                    results: [],
-                    msg: 'No orders found for this user'
+                    results: results || [],
+                    msg: results.length ? 'Orders retrieved successfully' : 'No orders found for this user'
                 });
-            }
-            
-            res.json({
-                status: 200,
-                results: results,
-                msg: 'Orders retrieved successfully'
             });
-        });
-    } catch(e) {
-        console.error('Unexpected error:', e);
-        res.status(500).json({
-            status: 500,
-            msg: 'Internal server error',
-            error: e.message
-        });
+        } catch(e) {
+            console.error('Unexpected error:', e);
+            res.status(500).json({
+                status: 500,
+                msg: 'Internal server error',
+                error: e.message
+            });
+        }
     }
-}
 
 fetchOrder(req, res) {
     try{
