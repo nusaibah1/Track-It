@@ -2,11 +2,13 @@
   <Navbar/>
   <div class="container">
        <div class="row">
-          <h2 class="display-2">Register</h2>
+          <h3 class="display-3">Register</h3>
       </div>
       <div class="row">
         <div class="form">
  <!-- From Uiverse.io by AmIt-DasIT  -->
+ <router-link to="/login"><span class="span">Already have an account? Sign In</span>
+ </router-link>
  <form class="form" @submit.prevent="register">
   <span class="input-span">
     <label for="email" class="label">First Name:</label>
@@ -30,8 +32,7 @@
 
 
   <input class="submit" type="submit" value="Sign Up" />
-  <router-link to="/login"><span class="span">Already have an account? Sign In</span>
-  </router-link>
+
 </form>
 </div>
  
@@ -63,7 +64,8 @@ function register() {
 </script>
 
 <style scoped>
-h2{
+h3{
+  margin: 30px 0;
   text-align: center;
   color: bisque;
 
@@ -92,7 +94,7 @@ button{
 h3{
   text-align: center;
   font-family: "Michroma", sans-serif; 
-  margin: 30%;
+  
 }
 
 label{
@@ -115,12 +117,12 @@ label{
 
 }
 
-.form .input-span {
+/* .form .input-span {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-}
+} */
 
 .form input {
   border-radius: 0.5rem;

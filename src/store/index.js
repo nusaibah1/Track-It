@@ -414,7 +414,7 @@ async fetchOrders(context, payload) {
   try {
     const { results, msg } = await (await axios.get(`${apiURL}user/${payload.userID}/orders`, payload)).data
     console.log('API URL:', `${apiURL}user/${payload.userID}/orders`);
-console.log('Payload:', payload);
+    console.log('Payload:', payload);
 
     if (results) {
       context.commit('setOrders', results)

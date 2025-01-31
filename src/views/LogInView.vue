@@ -46,6 +46,9 @@ function login() {
     text-align: center;
     font-family: "Michroma", sans-serif; 
 } */
+ h3{
+  margin: 30px 0 ;
+ }
 button{
     font-family: "Michroma", sans-serif; 
     margin: 3px;
