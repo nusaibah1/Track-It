@@ -4,7 +4,7 @@ import cors from 'cors'
 import {connection as db} from './config/config.js' 
 import { userRouter} from './controller/userController.js'
 import { supplierRouter } from './controller/supplierController.js'
-import  {itemRouter} from './controller/itemController.js'
+import {itemRouter} from './controller/itemController.js'
 import {salesRouter} from './controller/salesController.js'
 // const fs = require('fs')
 // const createCsvWriter = require('csv-writer').createObjectCsvWriter;

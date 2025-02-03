@@ -6,11 +6,9 @@ class Orders {
 fetchOrders(req, res) {
     try {
         const strQry = `
-        SELECT o.orderID, o.userID, p.prodName, o.State, o.orderQuantity, o.Total
-        FROM Orders o 
-        JOIN Products p ON o.prodID = p.prodID
-        JOIN Users u ON o.userID = u.userID
-        WHERE o.userID = ?;`
+        SELECT *
+        FROM Orders
+        WHERE userID = ${req.params.id};`
         
         db.query(strQry, [req.params.id], (err, results) => {
             if (err) {
