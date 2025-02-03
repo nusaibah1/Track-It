@@ -1,71 +1,90 @@
 <template>
   <Navbar/>
-  <div class="container-fluid">
+  <div class="container-fluid" :style="heroStyle">
     <h1>Welcome to TrackIt</h1>
     
     <p class="lead">
       Track It is an Inventory System dedicated to ensuring effortless management! 
       Here, you can effortlessly track and manage your inventory, streamline your operations, 
       and make informed decisions to optimize stock levels. Let us help you simplify your inventory management and enhance your productivity. 
-
     </p>
- 
- <router-link to="signUp"><button class="btn mx-auto d-flex justify-content-center">Get Started</button></router-link>
- <router-link to="logIn"><button class="btn mx-auto d-flex justify-content-center">Log In</button></router-link>
-      
-  </div>
 
+    <div class="button-container">
+      <router-link to="signUp"><button class="btn">Get Started</button></router-link>
+      <router-link to="logIn"><button class="btn">Log In</button></router-link>
+    </div>
+  </div>
 </template>
 
 <script>
 import Navbar from '../components/Navbar.vue';
 
-// import SignUp from './SignUpView.vue';
-// import LoginView from './LogInView.vue';
 export default {
-components: {
-  
-  // SignUp,
-  // LoginView,
-  Navbar
-}
-  
-
+  components: {
+    Navbar
+  },
+  data() {
+    return {
+      backgroundImage: require('@/assets/inventory.jpg') // Place your image in the assets folder
+    };
+  },
+  computed: {
+    heroStyle() {
+      return {
+        backgroundImage: `url(${this.backgroundImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        height: '100vh'
+      };
+    }
+  }
 }
 </script>
 
 <style scoped>
-.container{
+.container-fluid {
   position: fixed; 
   width: 100vw;  
   height: 100vh; 
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
- 
-}
-h1{
-  margin: 130px 0;
-  color: black;
-  font-weight: bold;
-}
-.lead{
-  font-weight: bold;
-
- 
-}
-h1,h2, h5,p{
-    text-align: center;
-    font-family:  'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
 }
 
+h1 {
+  margin-top: -300px;
+ color: orange;
+  font-weight: 800;
+  font-family: "Michroma", system-ui;
+}
 
+.lead {
+  margin: 30px 0;
+  font-family: "Michroma", system-ui;
+  font-weight: 300;
+  color: whitesmoke;
+}
 
-/* .container-fluid{
-  background-image: url("../assets/blob-scene-haikei.png") ;
-  background-size: 100% 100%;
-} */
-button:hover{
+h1, h2, h5, p {
+  text-align: center;
+}
+
+button {
+  color: #b6400e;
+  background-color: whitesmoke;
+  text-decoration: none !important;
+  font-family: "Michroma", system-ui;
+}
+
+button:hover {
   background-color: ghostwhite;
+  color: black;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Adds space between the buttons */
 }
 </style>

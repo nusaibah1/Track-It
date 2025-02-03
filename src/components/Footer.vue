@@ -4,7 +4,7 @@
 
     <footer class="container-fluid">
         <div class="row">
-            <footer class="t sticky-bottom">Track It &copy; <span>
+            <footer class="t">Track It &copy; <span>
                 {{ currentYear }}
                 </span>
          </footer>
@@ -34,7 +34,7 @@ data() {
     
 }
 .t{
-    background-color: black;
+    background-color: #b6400e;
     font-family: "Michroma", system-ui;
     text-align: center;
     color: bisque;

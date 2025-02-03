@@ -7,7 +7,7 @@
       <div class="row">
         <div class="form">
  <!-- From Uiverse.io by AmIt-DasIT  -->
- <router-link to="/login"><span class="span">Already have an account? Sign In</span>
+ <router-link to="/login"><span class="span-login">Already have an account? Sign In</span>
  </router-link>
  <form class="form" @submit.prevent="register">
   <span class="input-span">
@@ -66,8 +66,9 @@ function register() {
 <style scoped>
 h3{
   margin: 30px 0;
-  text-align: center;
+  
   color: bisque;
+
 
 }
 input, h5, h2, button{
@@ -154,7 +155,7 @@ label{
   align-items: center;
   gap: 0.5rem;
   border-radius: 3rem;
-  background-color: var(--bg-dark);
+  background-color: #b6400e;
   color: var(--bg-light);
   border: none;
   cursor: pointer;
@@ -164,8 +165,9 @@ label{
 }
 
 .form .submit:hover {
-  background-color: var(--clr);
+  background-color: #c75608;
   color: var(--bg-dark);
+  transition: ease-in-out 0.3s;
 }
 
 .span {
@@ -177,9 +179,14 @@ label{
   color: burlywood ;
 }
 
+.submit{
+  margin-bottom: 60px;
+}
 
-
-
+.span-login{
+color: #c75608;
+text-decoration: none;
+}
  
 </style>
 

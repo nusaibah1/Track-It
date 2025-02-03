@@ -2,7 +2,7 @@
  
     <Navbar/>
     <div class="row display-2">
-      <h3 class="">Log In</h3>
+      <h3 class="">Welcome Back</h3>
     </div>
     <div class="form">
  <!-- From Uiverse.io by AmIt-DasIT  -->
@@ -17,7 +17,7 @@
   /></span>
  
   <input class="submit" type="submit" value="Log in" />
-  <router-link to="/signUp"><span class="span">Don't have an account? Sign up</span>
+  <router-link to="/signUp"><span class="span-register">Don't have an account? Sign up</span>
   </router-link>
 </form>
 </div>
@@ -46,18 +46,19 @@ function login() {
     text-align: center;
     font-family: "Michroma", sans-serif; 
 } */
- h3{
-  margin: 30px 0 ;
- }
+h3 {
+  margin: 30px 0;
+  color: bisque !important;
+  text-align: center;
+  font-family: "Michroma", sans-serif;
+}
+
 button{
     font-family: "Michroma", sans-serif; 
     margin: 3px;
 }
 
-h3{
-  text-align: center;
-  font-family: "Michroma", sans-serif; 
-}
+
 
 label{
   font-family: "Michroma", sans-serif; 
@@ -114,17 +115,19 @@ label{
   align-items: center;
   gap: 0.5rem;
   border-radius: 3rem;
-  background-color: var(--bg-dark);
+  background-color:  #b6400e;
   color: var(--bg-light);
   border: none;
   cursor: pointer;
   transition: all 300ms;
   font-weight: 600;
   font-size: 0.9rem;
+  font-family: "Michroma", sans-serif; 
+  
 }
 
 .form .submit:hover {
-  background-color: var(--clr);
+  background-color: #c75608;
   color: var(--bg-dark);
 }
 
@@ -137,5 +140,8 @@ label{
   color: var(--clr);
 }
 
+.span-register{
+  color: #c75608;
 
+}
 </style>

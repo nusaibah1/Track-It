@@ -36,7 +36,7 @@ nav-link{
   color: beige;
 }
 .nav-item{
-  
+  flex: right;
   margin-top: 5%;
   font-size: 23px;
 
@@ -47,17 +47,20 @@ nav-link{
 .nav-link:active{
   color: beige;
   text-decoration: none;
+  
 }
 .nav-link{
   color: bisque !important;
   font-family: "Michroma", system-ui;
+  justify-content: space-between;
+  flex: right;
 }
     
 img[alt='logo'] {
     width: 5rem;
 }
 .navbar{
-    background-color:  rgb(33, 33, 33);
+    background-color:  #b6400e;
     overflow: hidden;
 }
 
