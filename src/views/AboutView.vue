@@ -1,7 +1,7 @@
 <template>
     <Navbar></Navbar>
     <div class="container-fluid">
-
+    
     </div>
 </template>
 

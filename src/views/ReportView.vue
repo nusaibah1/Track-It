@@ -3,7 +3,7 @@
   <div class="container-fluid">
   
     <div class="row flex-nowrap">
-        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 ">
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                 <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     <span class="fs-5 d-none d-sm-inline">  <router-link class="navbar-brand" to="/"></router-link></span>
@@ -43,28 +43,16 @@
                             <i class="fs-4 bi-truck"></i> <span class="ms-1 d-none d-sm-inline">Suppliers</span> </router-link>
                     </li>
                 </ul>
-                <hr>
-                <div class="dropdown pb-4">
-                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://nusaibah1.github.io/inventoryImages/images/admin.jpg" alt="hugenerd" width="30" height="30" class="rounded-circle">
-                        <span class="d-none d-sm-inline mx-1">Admin</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                        <li><a class="dropdown-item" href="#">New project...</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Sign out</a></li>
-                    </ul>
-                </div>
+               
+                
             </div>
         </div>
         <div class="col py-3">
             <div class="container-fluid">
               <div>
-    <h3 ref="content">Sales Report</h3>
+    <h3 ref="content">Sales Report</h3>  
+    
+
               <ul v-if="sales && sales.length" ref="content">
                     <li  v-for="sale in sales" :key="sale.saleID">
                         <CardComp>
@@ -101,17 +89,19 @@
        
      
        
-  <button @click="generatePDF()">Download as PDF</button>
+
        
        
-       
-       
-              <h3>Tasks</h3>
+       <div class="task-tracker">
+        <h3>Tasks</h3>
        
      
-      <button @click="sortTasksAlphabetically()">Sort</button><input type="text" id="task-input" placeholder="Enter a task"> <button @click="addTask()">Add Task</button>
-   <br>
-      <p id="task-list"></p>
+       <button @click="sortTasksAlphabetically()" >Sort</button><input type="text" id="task-input" placeholder="Enter a task"> <button @click="addTask()">Add Task</button>
+    <br>
+       <p id="task-list"></p>
+       </div>
+       
+       
 
 </div>
 
@@ -194,10 +184,11 @@ export default {
 
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'X'
-        deleteButton.style.backgroundColor = 'black';
+        deleteButton.style.backgroundColor = '#b6400e';
         deleteButton.style.color = 'bisque'
         deleteButton.addEventListener('click', () => this.deleteTask(task.id))
-       
+        deleteButton.classList.add('delete-btn');
+
         taskItem.appendChild(taskLabel)
         taskItem.appendChild(deleteButton)
         taskList.appendChild(taskItem)
@@ -253,17 +244,19 @@ export default {
 } */
  h3{
   justify-self: flex-end;
+  color: #b6400e;
+  font-weight: bold;
 
  }
  li, ul{
     float: left;
     list-style: none;
 }
-table,h3, button{
+table,h3, button, #task-input, p{
     font-family: "Michroma", sans-serif;   
 }
 button{
-  background-color: black;
+  background-color: #b6400e;
   color: bisque;
 }
 #task-list{
@@ -272,7 +265,22 @@ button{
   list-style: none;
 
 }
-.card{
-  justify-content: space-between;
+
+.col-auto, .btn{
+    background-color: #b6400e !important;
 }
+#task-input{
+  margin: 0 3px;
+}
+p{
+  margin: 3px 0;
+}
+.task-tracker{
+  float: right;
+  margin: -300px 0;
+}
+.delete-btn{
+  margin: 0 2px;
+}
+
 </style>

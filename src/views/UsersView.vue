@@ -2,7 +2,7 @@
 
     <div class="container-fluid">
       <div class="row flex-nowrap">
-          <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+          <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 ">
               <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                   <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                       <span class="fs-5 d-none d-sm-inline">  <router-link class="navbar-brand" to="/"></router-link></span>
@@ -173,23 +173,47 @@ export default {
 
 
 <style scoped>
-input{
-    border: solid black;
+input, .form-select{
+
+
+    border: solid saddlebrown 1px;
+}
+input:hover{
+  border: solid beige 1px;
 }
 h2{
     text-align: center;
     font-family: "Michroma", sans-serif;
+    color: beige;
+    font-weight: bold;
 }
-.btn{
-    border: 1px black;
-}
+
 th{
     font-family: "Michroma", "sans-serif";
+    color: #b6400e !important;
 }
 img{
  height: 60px
 }
 td{
-  font-weight: bold;
+  color: black;
+  font-family: "Michroma", "sans-serif";
+}
+table{
+  border: solid saddlebrown 1px;
+}
+
+.btn{
+    border:  solid black 2px;
+    color: beige;
+    font-family: "Michroma", sans-serif; 
+}
+.btn:hover{
+    background-color: #c75608;
+    border:  solid black 2px;
+    color: aliceblue;
+}
+.col-auto{
+    background-color: #b6400e;
 }
 </style>

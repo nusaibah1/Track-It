@@ -2,7 +2,7 @@
 <template>
     <div class="container-fluid">
       <div class="row flex-nowrap">
-          <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+          <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 ">
               <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                   <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                       <span class="fs-5 d-none d-sm-inline">  <router-link class="navbar-brand" to="/"></router-link></span>
@@ -61,7 +61,7 @@
           </div>
           <div class="col py-3">
               
-              <button class="btn bg-secondary">Generate Report</button>
+              <button class="btn ">Generate Report</button>
               <div class="container-fluid">
         <h3>Suppliers</h3>
         
@@ -163,12 +163,30 @@ data() {
 
 </script>
 
-<style>
+<style scoped>
 h3{
-    color: bisque;
+    font-family: "Michroma", sans-serif; 
     text-align: center;
+    color: beige;
+    font-weight: bold;
 }
 th{
-    color: grey !important;
+    color: #b6400e !important;
+    font-family: "Michroma", sans-serif; 
+    
+}
+.btn{
+    border:  solid black 2px;
+    color: beige;
+    font-family: "Michroma", sans-serif; 
+}
+.btn:hover{
+    background-color: #c75608;
+    border:  solid black 2px;
+    color: aliceblue;
+}
+
+.col-auto, .btn{
+    background-color: #b6400e;
 }
 </style>

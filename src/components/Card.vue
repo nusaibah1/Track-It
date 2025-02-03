@@ -23,19 +23,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 .card{
     width: 18rem;
+    margin: 3px 3px;
 
 }
 
 .card-header{
-    background-color: black;
-    color: white;
+    background-color: beige;
+    color: #b6400e;
     font-family: "Michroma", sans-serif;
+    border: solid black 1px;
+
 }
 .card-body{
     background-color: white;
-    font-weight: bold;
-    font-family: "Montserrat", sans-serif;
+    border-radius: 3px;
+    font-family: "Michroma", sans-serif;
     color: black;
+    border: solid black 1px;
 }
 
 
