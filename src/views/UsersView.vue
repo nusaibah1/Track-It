@@ -174,9 +174,7 @@ export default {
 
 <style scoped>
 input, .form-select{
-
-
-    border: solid saddlebrown 1px;
+  border: solid saddlebrown 1px;
 }
 input:hover{
   border: solid beige 1px;
@@ -193,14 +191,14 @@ th{
     color: #b6400e !important;
 }
 img{
- height: 60px
+    height: 60px
 }
 td{
-  color: black;
-  font-family: "Michroma", "sans-serif";
+    color: black;
+    font-family: "Michroma", "sans-serif";
 }
 table{
-  border: solid saddlebrown 1px;
+    border: solid saddlebrown 1px;
 }
 
 .btn{

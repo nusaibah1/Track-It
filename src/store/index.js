@@ -89,7 +89,7 @@ export default createStore({
       if (results) {
         context.commit('setUsers', results)
       } else {
-        toast.error(`${msg}|| Session Expired. Relogin to proceed`, {
+        toast.error(`${msg} || Session Expired. Relogin to proceed`, {
           autoClose: 3000
         })
       }
