@@ -3,47 +3,7 @@ import {connection as db} from '../config/config.js'
 
 
 class Orders {
-fetchOrders(req, res) {
-    try {
-        const strQry = `
-        SELECT *
-        FROM Orders
-        WHERE userID = ${req.params.id};`
-        
-        db.query(strQry, [req.params.id], (err, results) => {
-            if (err) {
-                console.error('Error fetching orders:', err);
-                return res.status(500).json({
-                    status: 500,
-                    msg: 'Unable to retrieve orders',
-                    error: err.message
-                });
-            }
-            
-            if (results.length === 0) {
-                return res.json({
-                    status: 200,
-                    results: [],
-                    msg: 'No orders found for this user'
-                });
-            }
-            
-            res.json({
-                status: 200,
-                results: results,
-                msg: 'Orders retrieved successfully'
-            });
-        });
-    } catch(e) {
-        console.error('Unexpected error:', e);
-        res.status(500).json({
-            status: 500,
-            msg: 'Internal server error',
-            error: e.message
-        });
-    }
-}
-
+// Retrieving a specific (single) order using the orderID
 fetchOrder(req, res) {
     try{
         const strQry = `
@@ -75,7 +35,8 @@ fetchOrder(req, res) {
         msg: 'Please try again later'
      })
     }
-}
+    }
+    // Adding a single order
 async addOrder(req, res) {
       try {
         let data = req.body
@@ -95,8 +56,9 @@ async addOrder(req, res) {
             err: e.message
         })
     }
-}
-
+    }
+    
+// Updating a single order
 async updateOrder(req, res) {
        try{
         let data = req.body
@@ -227,7 +189,7 @@ fetchProfit(req, res) {
      db.query(strQry, (err, result) => {
         if(err) console.log(err) //throw new Error('Unable to retrieve profit')
             res.json({
-        status: res.statusCode, result
+        status: res.statusCode, result  
     })
 
         

@@ -39,6 +39,10 @@ userRouter.post('/login', (req, res) => {
 
 
 // =====Orders=======
+// All orders
+
+// All of a single users orders
+
 userRouter.get('/:id/orders',(req, res) => {
     orders.fetchOrders(req, res)
 })
